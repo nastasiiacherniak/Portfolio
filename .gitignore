@@ -1,0 +1,49 @@
+# Dependencies
+node_modules
+
+# Build output
+dist
+build
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Editor / OS
+.DS_Store
+.vscode
+.idea
+Thumbs.db
+
+# Local Claude Code settings (machine-specific)
+.claude/settings.local.json
+
+# Design sources / build artifacts not needed for the live site
+*.make
+*.zip
+*.wmv
+screencapture-*.png
+Case study page/
+Cursor/
+
+# Loose design-reference assets at project root (the app imports from images/ and src/imports/)
+/about.jpg
+/contact.jpg
+/hero.jpg
+/tablet.jpg
+/work.jpg
+/work1.jpg
+/Section About.jpg
+/Section Contact.jpg
+/Menu_Mobile 360px.jpg
+/2026-05-31_170744.jpg
+/Paper fly.json
+/animation_noise.json
