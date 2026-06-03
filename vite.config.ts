@@ -17,7 +17,7 @@ function figmaAssetResolver() {
 }
 
 export default defineConfig({
-  // Project is deployed to GitHub Pages under https://angel-jazva.github.io/Portfolio/
+  // Project is deployed to GitHub Pages under https://nastasiiacherniak.github.io/Portfolio/
   base: '/Portfolio/',
   plugins: [
     figmaAssetResolver(),
