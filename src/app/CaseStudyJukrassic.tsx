@@ -7,6 +7,7 @@ import imgHero from "@/imports/jukrassic/hero.jpg";
 import imgProject1 from "@/imports/jukrassic/project-1.jpg";
 import vidProject from "@/imports/jukrassic/project-video.mp4";
 import vidApproach from "@/imports/jukrassic/approach.mp4";
+import imgApproachPoster from "@/imports/jukrassic/approach-poster.jpg";
 import imgApproach2 from "@/imports/jukrassic/approach-2.jpg";
 import imgApproach3 from "@/imports/jukrassic/approach-3.jpg";
 import imgOutcomes1 from "@/imports/jukrassic/outcomes-1.jpg";
@@ -79,6 +80,37 @@ function RineskReveal({ src }: { src: string }) {
 
 // Desktop: click-to-play (no autoplay) with the custom cursor showing a play icon while paused and a
 // pause icon while playing. Tablet/mobile: the video autoplays (muted, looped) since there's no cursor.
+// Desktop (real pointer, no touch): click-to-play with the custom cursor showing play/pause. Touch
+// devices (phones AND tablets, including iPad even in desktop mode where media queries lie) autoplay
+// muted/looped — detected via navigator.maxTouchPoints. Optional poster previews the video unplayed.
+function HoverVideo({ src, poster, className }: { src: string; poster?: string; className?: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  const [isTouch] = useState(() => typeof navigator !== "undefined" && (navigator.maxTouchPoints > 0 || "ontouchstart" in window));
+  const [playing, setPlaying] = useState(false);
+  const toggle = () => {
+    const v = ref.current;
+    if (!v) return;
+    if (v.paused) v.play(); else v.pause();
+  };
+  return (
+    <video
+      ref={ref}
+      src={src}
+      poster={poster}
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      autoPlay={isTouch}
+      data-cursor={isTouch ? undefined : (playing ? "pause" : "play")}
+      onClick={toggle}
+      onPlay={() => setPlaying(true)}
+      onPause={() => setPlaying(false)}
+      className={className}
+    />
+  );
+}
+
 // Same approach as the homepage nav: progressive blur backdrop + scroll-spy active underline,
 // links in regular weight. Text stays light on the dark case-study background.
 function CaseNav() {
@@ -205,7 +237,7 @@ export default function CaseStudyJukrassic() {
         </SectionHead>
 
         <Reveal>
-          <video src={vidApproach} autoPlay muted loop playsInline className="w-full mt-[60px] md:mt-[100px] block" />
+          <HoverVideo src={vidApproach} poster={imgApproachPoster} className="w-full mt-[60px] md:mt-[100px] block cursor-pointer" />
         </Reveal>
 
         <div className="grid md:grid-cols-2 gap-[24px] items-start mt-[40px] md:mt-[80px] lg:mt-[120px]">
