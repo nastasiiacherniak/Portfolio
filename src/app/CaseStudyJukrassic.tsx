@@ -79,9 +79,12 @@ function RineskReveal({ src }: { src: string }) {
 
 // Desktop: click-to-play (no autoplay) with the custom cursor showing a play icon while paused and a
 // pause icon while playing. Tablet/mobile: the video autoplays (muted, looped) since there's no cursor.
+// Hover-capable (mouse) devices: click-to-play with the custom cursor showing play/pause. Touch
+// devices (phones AND tablets, regardless of width): the video autoplays muted/looped since there's
+// no cursor. Detection is by pointer capability, not width, so wide landscape tablets still autoplay.
 function HoverVideo({ src, className }: { src: string; className?: string }) {
   const ref = useRef<HTMLVideoElement>(null);
-  const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const canHover = useMediaQuery("(hover: hover) and (pointer: fine)");
   const [playing, setPlaying] = useState(false);
   const toggle = () => {
     const v = ref.current;
@@ -96,7 +99,7 @@ function HoverVideo({ src, className }: { src: string; className?: string }) {
       loop
       playsInline
       preload="metadata"
-      autoPlay={!isDesktop}
+      autoPlay={!canHover}
       data-cursor={playing ? "pause" : "play"}
       onClick={toggle}
       onPlay={() => setPlaying(true)}
