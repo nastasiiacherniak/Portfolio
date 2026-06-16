@@ -24,21 +24,21 @@ import telegramSvg from "@/imports/Socials/telegram.svg?raw";
 export const gallery = { fontFamily: "'Gallery Modern', 'Italiana', serif" };
 export const manrope = { fontFamily: "'Manrope', sans-serif" };
 
-type Project = { title: string; year: string; tags: string[]; image: string; to?: string };
+type Project = { title: string; year: string; tags: string[]; image: string; alt: string; to?: string };
 const projects: Project[] = [
-  { title: "Rinesk", year: "2025", tags: ["Dashboard", "Call centre", "UI/UX Design"], image: imgRinesk, to: "/work/rinesk" },
-  { title: "Fincube", year: "2024", tags: ["Mobile app", "Finance", "UI/UX Design"], image: imgFincube, to: "/work/fincube" },
-  { title: "BrushBuddy", year: "2024", tags: ["Website", "E-commerce", "UI/UX Design"], image: imgBrush, to: "/work/brushbuddy" },
-  { title: "Jukrassic Pork", year: "2023", tags: ["Redesign", "Media", "UI/UX Design"], image: imgJukra, to: "/work/jukrassic" },
+  { title: "Rinesk", year: "2025", tags: ["Dashboard", "Call centre", "UI/UX Design"], image: imgRinesk, to: "/work/rinesk", alt: "Rinesk - Telecom Dashboard for Call Centre | Branding and UX & UI Design" },
+  { title: "Fincube", year: "2024", tags: ["Mobile app", "Finance", "UI/UX Design"], image: imgFincube, to: "/work/fincube", alt: "Fincube - Personal Finance Monitoring Mobile app | UX & UI Design" },
+  { title: "BrushBuddy", year: "2024", tags: ["Website", "E-commerce", "UI/UX Design"], image: imgBrush, to: "/work/brushbuddy", alt: "BrushBuddy - Healthcare Ecommerce Website with Oral Care Products | UX & UI Design" },
+  { title: "Jukrassic Pork", year: "2023", tags: ["Redesign", "Media", "UI/UX Design"], image: imgJukra, to: "/work/jukrassic", alt: "Jukrassic Pork - Media Website Redesign for Music Band | UX & UI Design" },
 ];
 
 // Selected-work showcase images, ordered by the filename numbering in /images
 const selectedWork = [
-  { src: imgSel1, label: "OpenMind" },
-  { src: imgSel2, label: "1000+1 Song" },
-  { src: imgSel3, label: "Svitlytsia" },
-  { src: imgSel4, label: "Pixel" },
-  { src: imgSel5, label: "Swamispath" },
+  { src: imgSel1, label: "OpenMind", alt: "Openmind - Travel Web platform for Couchsurfers | UX & UI Design" },
+  { src: imgSel2, label: "1000+1 Song", alt: "1000+1song - Media Website with Ethnocultural Sings | UX & UI Design" },
+  { src: imgSel3, label: "Svitlytsia", alt: "Svitlytsia - Public services One page Website for Management Company | UX & UI Design" },
+  { src: imgSel4, label: "Pixel", alt: "Pixel - Real Estate Landing page | UX & UI Design" },
+  { src: imgSel5, label: "Swamispath", alt: "Swamispath - Wellness Mobile app for Coach Community | UX & UI Design" },
 ];
 
 function SocialIcon({ svg, size = 24 }: { svg: string; size?: number }) {
@@ -493,7 +493,7 @@ function Works({ textColor }: { textColor: MotionValue<string> }) {
                 >
                   <img
                     src={projects[active].image}
-                    alt={projects[active].title}
+                    alt={projects[active].alt}
                     className="w-full h-full object-cover"
                   />
                 </motion.div>
@@ -528,7 +528,7 @@ function Works({ textColor }: { textColor: MotionValue<string> }) {
                     Keep the 408×300 proportion at every size: fixed 408×300 from ~440px up
                     (capped by max-w-[408px]); below that it scales down with the side margins
                     while preserving the aspect ratio. */}
-                <img src={p.image} alt={p.title} className="lg:hidden order-last w-full max-w-[408px] aspect-[408/300] object-cover" />
+                <img src={p.image} alt={p.alt} className="lg:hidden order-last w-full max-w-[408px] aspect-[408/300] object-cover" />
                 <div className="flex items-end justify-center w-full gap-[12px] md:gap-[24px] lg:gap-[56px]">
                   <RevealTitle
                     ref={(el) => { titleRefs.current[i] = el; }}
@@ -556,7 +556,7 @@ function Works({ textColor }: { textColor: MotionValue<string> }) {
             style={{ x: marqueeX }}
           >
             {selectedWork.map((w, i) => (
-              <img key={i} src={w.src} alt={w.label} className="w-[240px] md:w-[408px] h-[180px] md:h-[300px] object-cover opacity-70 shrink-0 transition-opacity duration-300 hover:opacity-100" />
+              <img key={i} src={w.src} alt={w.alt} className="w-[240px] md:w-[408px] h-[180px] md:h-[300px] object-cover opacity-70 shrink-0 transition-opacity duration-300 hover:opacity-100" />
             ))}
           </motion.div>
         </div>
@@ -576,7 +576,7 @@ export function Contact() {
         <div className="flex flex-col md:pt-[120px] pb-0 gap-[40px] md:gap-[80px]">
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-[40px]">
             <ScrollRevealText
-              className="text-[#fefefe] text-[24px] md:text-[36px] lg:text-[44px] leading-[32px] md:leading-[46px] lg:leading-[56px] font-normal md:flex-1 lg:flex-none lg:w-[840px]"
+              className="text-[#fefefe] text-[24px] md:text-[36px] lg:text-[44px] leading-[32px] md:leading-[46px] lg:leading-[56px] font-normal min-w-0 md:flex-1 lg:max-w-[840px]"
               text="If you liked this artwork, please contact me in any convenient way and we can discuss ideas for your project."
               offset={["start 0.9", "end 0.65"]}
             />

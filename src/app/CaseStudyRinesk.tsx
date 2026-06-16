@@ -15,7 +15,7 @@ import imgOutcomes4 from "@/imports/rinesk/outcomes-4.jpg";
 import vidApproach from "@/imports/rinesk/approach.mp4";
 import imgFincube from "@/imports/rinesk/fincube.jpg";
 
-const CREAM = "#e8e4d8";
+const CREAM = "#fefefe";
 
 function Meta({ label, value }: { label: string; value: string }) {
   return (
@@ -69,7 +69,7 @@ function FincubeReveal({ src }: { src: string }) {
       <motion.div style={{ width: w, height: h }} className="overflow-hidden flex items-center justify-center">
         <img
           src={src}
-          alt="Fincube mobile app"
+          alt="Personal Finance Mobile App Preview"
           className="w-[840px] h-[300px] max-w-none object-cover shrink-0 transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         />
       </motion.div>
@@ -170,7 +170,7 @@ export default function CaseStudyRinesk() {
 
         {/* No grayscale/wireframe variant → plain hero image, no toggle. */}
         <Reveal>
-          <img src={imgHero} alt="Rinesk dashboard" className="w-full block mt-[40px] md:mt-[60px]" />
+          <img src={imgHero} alt="Call Centre Analytics Dashboard Design" className="w-full block mt-[40px] md:mt-[60px]" />
         </Reveal>
       </section>
 
@@ -182,9 +182,9 @@ export default function CaseStudyRinesk() {
         </SectionHead>
 
         <div className="grid md:grid-cols-2 gap-[24px] items-start mt-[60px] md:mt-[100px]">
-          <Reveal><img src={imgProject1} alt="Rinesk statistics dashboard" className="w-full" /></Reveal>
+          <Reveal><img src={imgProject1} alt="Call Centre Statistics Dashboard UI" className="w-full" /></Reveal>
           <div className="flex flex-col gap-[40px] md:gap-[64px]">
-            <Reveal delay={0.1}><img src={imgProject2} alt="Rinesk logo construction grid" className="w-full" /></Reveal>
+            <Reveal delay={0.1}><img src={imgProject2} alt="Telecom Brand Logo Grid Construction" className="w-full" /></Reveal>
             <Reveal delay={0.15}>
               <Caption title="Solution" align="right">
                 The design aimed to centralize insights and create a simplified visual structure for agents. I focused on turning data into actionable metrics that help reduce time on routine tasks.
@@ -207,8 +207,8 @@ export default function CaseStudyRinesk() {
         </Reveal>
 
         <div className="grid md:grid-cols-2 gap-[24px] items-start mt-[40px] md:mt-[80px] lg:mt-[120px]">
-          <Reveal><img src={imgApproach2} alt="Rinesk Instagram story" className="w-full" /></Reveal>
-          <Reveal delay={0.1}><img src={imgApproach3} alt="Rinesk mobile CSAT surveys" className="w-full" /></Reveal>
+          <Reveal><img src={imgApproach2} alt="Telecom Brand Instagram Story Design" className="w-full" /></Reveal>
+          <Reveal delay={0.1}><img src={imgApproach3} alt="Customer Satisfaction Survey Mobile Screen" className="w-full" /></Reveal>
         </div>
       </section>
 
@@ -221,21 +221,21 @@ export default function CaseStudyRinesk() {
         {/* Row 1 — laptop (left) + visual-clarity statement (right) aligned at the top; caption under the laptop */}
         <div className="grid md:grid-cols-2 gap-[24px] items-start mt-[60px] md:mt-[100px]">
           <div className="flex flex-col gap-[40px] md:gap-[64px]">
-            <Reveal><img src={imgOutcomes1} alt="Rinesk dashboard on laptop" className="w-full" /></Reveal>
+            <Reveal><img src={imgOutcomes1} alt="Call Centre Dashboard Laptop View" className="w-full" /></Reveal>
             <Reveal delay={0.05}>
               <Caption title="Streamlined Data Access" align="left">
                 By eliminating the need to switch between multiple tabs, the centralized dashboard cut down average data retrieval times for supervisors by 35%.
               </Caption>
             </Reveal>
           </div>
-          <Reveal delay={0.1}><img src={imgOutcomes2} alt="Visual clarity comparison" className="w-full" /></Reveal>
+          <Reveal delay={0.1}><img src={imgOutcomes2} alt="Dashboard Visual Clarity Comparison Design" className="w-full" /></Reveal>
         </div>
 
         {/* Row 2 — mobile screens (left) + business card (right) aligned at the top; caption under the card */}
         <div className="grid md:grid-cols-2 gap-[24px] items-start mt-[40px] md:mt-[80px] lg:mt-[120px]">
-          <Reveal><img src={imgOutcomes3} alt="Rinesk mobile app screens" className="w-full" /></Reveal>
+          <Reveal><img src={imgOutcomes3} alt="Call Centre Mobile App Screens" className="w-full" /></Reveal>
           <div className="flex flex-col gap-[40px] md:gap-[64px]">
-            <Reveal delay={0.1}><img src={imgOutcomes4} alt="Rinesk branding business card" className="w-full lg:w-[408px] lg:h-[300px] lg:object-cover lg:ml-auto" /></Reveal>
+            <Reveal delay={0.1}><img src={imgOutcomes4} alt="Telecom Brand Business Card Design" className="w-full lg:w-[408px] lg:h-[300px] lg:object-cover lg:ml-auto" /></Reveal>
             <Reveal delay={0.15}>
               <Caption title="Reduced Operational Errors" align="right">
                 The clean information architecture minimized visual clutter, resulting in a substantial reduction in agent handling mistakes during high-volume multitasking periods.
@@ -273,7 +273,7 @@ export default function CaseStudyRinesk() {
           ) : (
             <Reveal>
               <div className="overflow-hidden mt-[40px] md:mt-[60px]">
-                <img src={imgFincube} alt="Fincube mobile app" className="w-full h-[300px] object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
+                <img src={imgFincube} alt="Personal Finance Mobile App Preview" className="w-full h-[300px] object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
               </div>
             </Reveal>
           )}

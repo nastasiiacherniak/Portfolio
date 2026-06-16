@@ -15,7 +15,7 @@ import imgOutcomes3 from "@/imports/jukrassic/outcomes-3.jpg";
 import imgOutcomes4 from "@/imports/jukrassic/outcomes-4.jpg";
 import imgRinesk from "@/imports/jukrassic/rinesk.jpg";
 
-const CREAM = "#e8e4d8";
+const CREAM = "#fefefe";
 
 function Meta({ label, value }: { label: string; value: string }) {
   return (
@@ -69,7 +69,7 @@ function RineskReveal({ src }: { src: string }) {
       <motion.div style={{ width: w, height: h }} className="overflow-hidden flex items-center justify-center">
         <img
           src={src}
-          alt="Rinesk dashboard"
+          alt="Call Centre Dashboard Website Preview"
           className="w-[840px] h-[300px] max-w-none object-cover shrink-0 transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         />
       </motion.div>
@@ -199,7 +199,7 @@ export default function CaseStudyJukrassic() {
 
         {/* No grayscale variant → plain hero image, no toggle. */}
         <Reveal>
-          <img src={imgHero} alt="Jukrassic Pork website" className="w-full block mt-[40px] md:mt-[60px]" />
+          <img src={imgHero} alt="Music Band Website Homepage Design" className="w-full block mt-[40px] md:mt-[60px]" />
         </Reveal>
       </section>
 
@@ -211,7 +211,7 @@ export default function CaseStudyJukrassic() {
         </SectionHead>
 
         <div className="grid md:grid-cols-2 gap-[24px] items-start mt-[60px] md:mt-[100px]">
-          <Reveal><img src={imgProject1} alt="Jukrassic Pork latest releases section" className="w-full" /></Reveal>
+          <Reveal><img src={imgProject1} alt="Music Band Latest Releases Section" className="w-full" /></Reveal>
           <div className="flex flex-col gap-[40px] md:gap-[64px]">
             {/* Autoplay video sits in the IMG 2 slot (muted, looped). */}
             <Reveal delay={0.1}><video src={vidProject} autoPlay muted loop playsInline className="w-full block" /></Reveal>
@@ -236,8 +236,8 @@ export default function CaseStudyJukrassic() {
         </Reveal>
 
         <div className="grid md:grid-cols-2 gap-[24px] items-start mt-[40px] md:mt-[80px] lg:mt-[120px]">
-          <Reveal><img src={imgApproach2} alt="Band member slider — vocals" className="w-full" /></Reveal>
-          <Reveal delay={0.1}><img src={imgApproach3} alt="Music page on mobile" className="w-full" /></Reveal>
+          <Reveal><img src={imgApproach2} alt="Band Member Profile Slider UI" className="w-full" /></Reveal>
+          <Reveal delay={0.1}><img src={imgApproach3} alt="Music Band Mobile Page Design" className="w-full" /></Reveal>
         </div>
       </section>
 
@@ -251,21 +251,21 @@ export default function CaseStudyJukrassic() {
         {/* Row 1 — IMG_1 (left) + caption; IMG_2 lone (right) */}
         <div className="grid md:grid-cols-2 gap-[24px] items-start mt-[60px] md:mt-[100px]">
           <div className="flex flex-col gap-[40px] md:gap-[64px]">
-            <Reveal><img src={imgOutcomes1} alt="Band member profile slider" className="w-full" /></Reveal>
+            <Reveal><img src={imgOutcomes1} alt="Band Members Showcase Slider Design" className="w-full" /></Reveal>
             <Reveal delay={0.05}>
               <Caption title="Centralized Media Engagement" align="left">
                 Replaced the need for third-party web searches by embedding direct, side-by-side audio download and lyric modules on the music page, keeping traffic centralized and users deeply engaged.
               </Caption>
             </Reveal>
           </div>
-          <Reveal delay={0.1}><img src={imgOutcomes2} alt="Band members section on desktop" className="w-full" /></Reveal>
+          <Reveal delay={0.1}><img src={imgOutcomes2} alt="Music Band Members Desktop Section" className="w-full" /></Reveal>
         </div>
 
         {/* Row 2 — IMG_3 lone (left); IMG_4 (right) + caption */}
         <div className="grid md:grid-cols-2 gap-[24px] items-start mt-[40px] md:mt-[80px] lg:mt-[120px]">
-          <Reveal><img src={imgOutcomes3} alt="Music releases with download and lyrics" className="w-full" /></Reveal>
+          <Reveal><img src={imgOutcomes3} alt="Music Releases Download Lyrics Interface" className="w-full" /></Reveal>
           <div className="flex flex-col gap-[40px] md:gap-[64px]">
-            <Reveal delay={0.1}><img src={imgOutcomes4} alt="404 page on mobile" className="w-full lg:w-[408px] lg:ml-auto" /></Reveal>
+            <Reveal delay={0.1}><img src={imgOutcomes4} alt="Music Band 404 Page Mobile" className="w-full lg:w-[408px] lg:ml-auto" /></Reveal>
             <Reveal delay={0.15}>
               <Caption title="Eliminated Navigation Friction" align="right">
                 Validated through an accessible 12-column grid and responsive mobile viewports to ensure contact options are immediately discoverable, completely resolving previous session abandonment.
@@ -303,7 +303,7 @@ export default function CaseStudyJukrassic() {
           ) : (
             <Reveal>
               <div className="overflow-hidden mt-[40px] md:mt-[60px]">
-                <img src={imgRinesk} alt="Rinesk dashboard" className="w-full h-[300px] object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
+                <img src={imgRinesk} alt="Call Centre Dashboard Website Preview" className="w-full h-[300px] object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
               </div>
             </Reveal>
           )}

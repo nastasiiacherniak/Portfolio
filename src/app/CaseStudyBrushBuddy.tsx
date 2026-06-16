@@ -17,7 +17,7 @@ import vidBrush from "@/imports/brushbuddy/brushbuddy.mp4";
 import vidDialog from "@/imports/brushbuddy/dialog.mp4";
 import imgNext from "@/imports/brushbuddy/jukrassic.jpg";
 
-const CREAM = "#e8e4d8";
+const CREAM = "#fefefe";
 
 function Meta({ label, value }: { label: string; value: string }) {
   return (
@@ -71,7 +71,7 @@ function NextReveal({ src }: { src: string }) {
       <motion.div style={{ width: w, height: h }} className="overflow-hidden flex items-center justify-center">
         <img
           src={src}
-          alt="Jukrassic Pork website"
+          alt="Music Band Website Redesign Preview"
           className="w-[840px] h-[300px] max-w-none object-cover shrink-0 transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         />
       </motion.div>
@@ -191,7 +191,7 @@ function HeroShowcase({ mockup, wireframe }: { mockup: string; wireframe: string
       data-cursor-label={showingWire ? "Show mockup" : "Show wireframe"}
       className="relative w-full mt-[40px] md:mt-[60px] overflow-hidden"
     >
-      <img src={base} alt="BrushBuddy website" className="w-full block" />
+      <img src={base} alt="Dental Care Ecommerce Website Design" className="w-full block" />
       {reveal && (
         <motion.img
           src={reveal.src}
@@ -256,9 +256,9 @@ export default function CaseStudyBrushBuddy() {
         </SectionHead>
 
         <div className="grid md:grid-cols-2 gap-[24px] items-start mt-[60px] md:mt-[100px]">
-          <Reveal><img src={imgProposition} alt="WOW offers section" className="w-full" /></Reveal>
+          <Reveal><img src={imgProposition} alt="Oral Care Online Store Homepage" className="w-full" /></Reveal>
           <div className="flex flex-col gap-[40px] md:gap-[64px]">
-            <Reveal delay={0.1}><img src={imgTabletDesk} alt="About BrushBuddy on tablet" className="w-full" /></Reveal>
+            <Reveal delay={0.1}><img src={imgTabletDesk} alt="Dental Care Brand Tablet View" className="w-full" /></Reveal>
             <Reveal delay={0.15}>
               <Caption title="Solution" align="right">
                 Promotions and novelties occupy the most important section, highlighted with a white background. According to surveys, a blog also adds informativeness and credibility to the site for users.
@@ -283,8 +283,8 @@ export default function CaseStudyBrushBuddy() {
         </Reveal>
 
         <div className="grid md:grid-cols-2 gap-[24px] items-start mt-[40px] md:mt-[80px] lg:mt-[120px]">
-          <Reveal><img src={imgProduct} alt="Product page" className="w-full" /></Reveal>
-          <Reveal delay={0.1}><img src={imgCatalog} alt="Catalog page" className="w-full" /></Reveal>
+          <Reveal><img src={imgProduct} alt="Oral Care Product Page Design" className="w-full" /></Reveal>
+          <Reveal delay={0.1}><img src={imgCatalog} alt="Dental Products Catalog Page UI" className="w-full" /></Reveal>
         </div>
       </section>
 
@@ -297,21 +297,21 @@ export default function CaseStudyBrushBuddy() {
         {/* Row 1 — tablet (left) + reviews (right) aligned at the top; Boosted caption under the tablet */}
         <div className="grid md:grid-cols-2 gap-[24px] items-start mt-[60px] md:mt-[100px]">
           <div className="flex flex-col gap-[40px] md:gap-[64px]">
-            <Reveal><img src={imgTabletFront} alt="BrushBuddy mobile home" className="w-full" /></Reveal>
+            <Reveal><img src={imgTabletFront} alt="Oral Care Shop Mobile UI" className="w-full" /></Reveal>
             <Reveal delay={0.05}>
               <Caption title="Boosted Credibility" align="left">
                 Positioning "profi" dentist recommendations and real customer reviews prominently on product pages effectively mitigated buyer hesitation and validated product quality.
               </Caption>
             </Reveal>
           </div>
-          <Reveal delay={0.1}><img src={imgReviews} alt="Customer reviews section" className="w-full" /></Reveal>
+          <Reveal delay={0.1}><img src={imgReviews} alt="Customer Reviews Ecommerce UX Design" className="w-full" /></Reveal>
         </div>
 
         {/* Row 2 — wow (left) + tablet (right) aligned at the top; Reduced caption under the right tablet */}
         <div className="grid md:grid-cols-2 gap-[24px] items-start mt-[40px] md:mt-[80px] lg:mt-[120px]">
-          <Reveal><img src={imgWow} alt="WOW offers section" className="w-full" /></Reveal>
+          <Reveal><img src={imgWow} alt="Dental Care Promo Offers Section" className="w-full" /></Reveal>
           <div className="flex flex-col gap-[40px] md:gap-[64px]">
-            <Reveal delay={0.1}><img src={imgTablet} alt="About section on tablet" className="w-full lg:w-[408px] lg:ml-auto" /></Reveal>
+            <Reveal delay={0.1}><img src={imgTablet} alt="Oral Care About Section Tablet" className="w-full lg:w-[408px] lg:ml-auto" /></Reveal>
             <Reveal delay={0.15}>
               <Caption title="Reduced Cognitive Load" align="right">
                 The minimalist pastel color palette combined with lighthearted, micro-copy humor created an inviting atmosphere that replaced the clinical anxiety usually associated with dental care.
@@ -349,7 +349,7 @@ export default function CaseStudyBrushBuddy() {
           ) : (
             <Reveal>
               <div className="overflow-hidden mt-[40px] md:mt-[60px]">
-                <img src={imgNext} alt="Jukrassic Pork website" className="w-full h-[300px] object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
+                <img src={imgNext} alt="Music Band Website Redesign Preview" className="w-full h-[300px] object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
               </div>
             </Reveal>
           )}

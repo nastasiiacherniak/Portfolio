@@ -16,7 +16,7 @@ import imgOutcomes4 from "@/imports/fincube/outcomes-4.jpg";
 import vidApproach from "@/imports/fincube/approach.mp4";
 import imgBrushBuddy from "@/imports/fincube/brushbuddy.jpg";
 
-const CREAM = "#e8e4d8";
+const CREAM = "#fefefe";
 
 function Meta({ label, value }: { label: string; value: string }) {
   return (
@@ -70,7 +70,7 @@ function BrushBuddyReveal({ src }: { src: string }) {
       <motion.div style={{ width: w, height: h }} className="overflow-hidden flex items-center justify-center">
         <img
           src={src}
-          alt="BrushBuddy website"
+          alt="Dental Care Ecommerce Website Preview"
           className="w-[840px] h-[300px] max-w-none object-cover shrink-0 transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         />
       </motion.div>
@@ -161,7 +161,7 @@ function HeroShowcase({ color, grayscale }: { color: string; grayscale: string }
       data-cursor-label={showingGray ? "Show mockup" : "Show wireframe"}
       className="relative w-full mt-[40px] md:mt-[60px] overflow-hidden"
     >
-      <img src={base} alt="Fincube app" className="w-full block" />
+      <img src={base} alt="Personal Finance Mobile App UI" className="w-full block" />
       {reveal && (
         <motion.img
           src={reveal.src}
@@ -226,9 +226,9 @@ export default function CaseStudyFincube() {
         </SectionHead>
 
         <div className="grid md:grid-cols-2 gap-[24px] items-start mt-[60px] md:mt-[100px]">
-          <Reveal><img src={imgProject1} alt="Fincube expense reports" className="w-full" /></Reveal>
+          <Reveal><img src={imgProject1} alt="Monthly Expense Tracking App Screen" className="w-full" /></Reveal>
           <div className="flex flex-col gap-[40px] md:gap-[64px]">
-            <Reveal delay={0.1}><img src={imgProject2} alt="Fincube app on the home screen" className="w-full" /></Reveal>
+            <Reveal delay={0.1}><img src={imgProject2} alt="Finance App Home Screen Setup" className="w-full" /></Reveal>
             <Reveal delay={0.15}>
               <Caption title="Solution" align="right">
                 To address common user pain points, I built an intuitive, rapid flow for core functions: allowing users to sync multiple bank accounts, automatically synchronize transactions, and manually map out savings goals with minimal friction.
@@ -251,8 +251,8 @@ export default function CaseStudyFincube() {
         </Reveal>
 
         <div className="grid md:grid-cols-2 gap-[24px] items-start mt-[40px] md:mt-[80px] lg:mt-[120px]">
-          <Reveal><img src={imgApproach2} alt="Fincube savings goal key feature" className="w-full" /></Reveal>
-          <Reveal delay={0.1}><img src={imgApproach3} alt="Fincube my goals screen" className="w-full" /></Reveal>
+          <Reveal><img src={imgApproach2} alt="Savings Goal Tracking Feature UI" className="w-full" /></Reveal>
+          <Reveal delay={0.1}><img src={imgApproach3} alt="Personal Savings Goals Mobile Screen" className="w-full" /></Reveal>
         </div>
       </section>
 
@@ -265,21 +265,21 @@ export default function CaseStudyFincube() {
         {/* Row 1 — IMG_1 expenses screen with caption (left) + IMG_2 widgets card (right, 624×600) */}
         <div className="grid md:grid-cols-2 gap-[24px] items-start mt-[60px] md:mt-[100px]">
           <div className="flex flex-col gap-[40px] md:gap-[64px]">
-            <Reveal><img src={imgOutcomes1} alt="Fincube monthly expenses screen" className="w-full" /></Reveal>
+            <Reveal><img src={imgOutcomes1} alt="Monthly Expenses Overview Mobile Design" className="w-full" /></Reveal>
             <Reveal delay={0.05}>
               <Caption title="100% Direct Success Rate" align="left">
                 Unmoderated testing with 12 respondents yielded a 100% direct success rate, validating that the core navigation and fast-transaction flows are highly intuitive.
               </Caption>
             </Reveal>
           </div>
-          <Reveal delay={0.1}><img src={imgOutcomes2} alt="Fincube home screen widgets" className="w-full" /></Reveal>
+          <Reveal delay={0.1}><img src={imgOutcomes2} alt="Finance Home Screen Widgets Design" className="w-full" /></Reveal>
         </div>
 
         {/* Row 2 — IMG_3 testing card (left, 624×600) + IMG_4 wallet screen with caption (right) */}
         <div className="grid md:grid-cols-2 gap-[24px] items-start mt-[40px] md:mt-[80px] lg:mt-[120px]">
-          <Reveal><img src={imgOutcomes3} alt="Usability testing results" className="w-full" /></Reveal>
+          <Reveal><img src={imgOutcomes3} alt="Finance App Usability Testing Results" className="w-full" /></Reveal>
           <div className="flex flex-col gap-[40px] md:gap-[64px]">
-            <Reveal delay={0.1}><img src={imgOutcomes4} alt="Fincube wallet screen" className="w-full lg:w-[408px] lg:ml-auto" /></Reveal>
+            <Reveal delay={0.1}><img src={imgOutcomes4} alt="Digital Wallet Mobile App Screen" className="w-full lg:w-[408px] lg:ml-auto" /></Reveal>
             <Reveal delay={0.15}>
               <Caption title="Instant Financial Overview" align="right">
                 By centralizing automated bank syncs, custom category tracking, and multi-currency support into a single dashboard, the interface successfully minimizes cognitive load and cuts daily expense-logging time down to seconds.
@@ -317,7 +317,7 @@ export default function CaseStudyFincube() {
           ) : (
             <Reveal>
               <div className="overflow-hidden mt-[40px] md:mt-[60px]">
-                <img src={imgBrushBuddy} alt="BrushBuddy website" className="w-full h-[300px] object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
+                <img src={imgBrushBuddy} alt="Dental Care Ecommerce Website Preview" className="w-full h-[300px] object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
               </div>
             </Reveal>
           )}
