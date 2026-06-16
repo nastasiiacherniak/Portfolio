@@ -79,36 +79,6 @@ function NextReveal({ src }: { src: string }) {
   );
 }
 
-// Hover-capable (mouse) devices: click-to-play with the custom cursor showing play/pause. Touch
-// devices (phones AND tablets, regardless of width): the video autoplays muted/looped since there's
-// no cursor. Detection is by pointer capability, not width, so wide landscape tablets still autoplay.
-function HoverVideo({ src, className }: { src: string; className?: string }) {
-  const ref = useRef<HTMLVideoElement>(null);
-  const canHover = useMediaQuery("(hover: hover) and (pointer: fine)");
-  const [playing, setPlaying] = useState(false);
-  const toggle = () => {
-    const v = ref.current;
-    if (!v) return;
-    if (v.paused) v.play(); else v.pause();
-  };
-  return (
-    <video
-      ref={ref}
-      src={src}
-      muted
-      loop
-      playsInline
-      preload="metadata"
-      autoPlay={!canHover}
-      data-cursor={playing ? "pause" : "play"}
-      onClick={toggle}
-      onPlay={() => setPlaying(true)}
-      onPause={() => setPlaying(false)}
-      className={className}
-    />
-  );
-}
-
 // Same approach as the homepage nav: progressive blur backdrop + scroll-spy active underline,
 // links in regular weight. Text stays light on the dark case-study background.
 function CaseNav() {
@@ -280,7 +250,7 @@ export default function CaseStudyBrushBuddy() {
         </SectionHead>
 
         <Reveal>
-          <HoverVideo src={vidBrush} className="w-full mt-[60px] md:mt-[100px] block cursor-pointer" />
+          <video src={vidBrush} autoPlay muted loop playsInline className="w-full mt-[60px] md:mt-[100px] block" />
         </Reveal>
 
         <div className="grid md:grid-cols-2 gap-[24px] items-start mt-[40px] md:mt-[80px] lg:mt-[120px]">
