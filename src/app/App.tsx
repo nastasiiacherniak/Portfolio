@@ -15,6 +15,10 @@ import imgSel2 from "../../images/2_1000+1song.jpg";
 import imgSel3 from "../../images/3_svitlytsia.jpg";
 import imgSel4 from "../../images/4_Pixel.jpg";
 import imgSel5 from "../../images/5_Swamispath.jpg";
+import avatarBorys from "../../images/Avatar Borys Romanenko.jpg";
+import avatarAnastasiia from "../../images/Avatar Anastasiia Symantieva.jpg";
+import avatarOleksii from "../../images/Avatar Oleksii Vynnyk.jpg";
+import quotesIcon from "../../Isons_svg/quotes.svg";
 
 import linkedinSvg from "@/imports/Socials/linkedin.svg?raw";
 import dribbbleSvg from "@/imports/Socials/dribbble.svg?raw";
@@ -39,6 +43,28 @@ const selectedWork = [
   { src: imgSel3, label: "Svitlytsia", alt: "Svitlytsia - Public services One page Website for Management Company | UX & UI Design" },
   { src: imgSel4, label: "Pixel", alt: "Pixel - Real Estate Landing page | UX & UI Design" },
   { src: imgSel5, label: "Swamispath", alt: "Swamispath - Wellness Mobile app for Coach Community | UX & UI Design" },
+];
+
+// Testimonials. Ordered left→right as shown in the design; Anastasiia (index 1) is active by default.
+const recommendations = [
+  {
+    name: "Borys Romanenko",
+    role: "Head of Growth",
+    avatar: avatarBorys,
+    quote: "She was also one of the most proactive people on the team when it came to bringing AI into her design process, which in the current environment is not a nice-to-have anymore.",
+  },
+  {
+    name: "Anastasiia Symantieva",
+    role: "Senior UI/UX Designer",
+    avatar: avatarAnastasiia,
+    quote: "She owns UI/UX end-to-end. What stands out is how naturally she blends careful, research-backed design with an AI-augmented workflow.",
+  },
+  {
+    name: "Oleksii Vynnyk",
+    role: "Full Stack Developer",
+    avatar: avatarOleksii,
+    quote: "She's easy to talk to, open to feedback, and never missed a deadline. We got along so well that she was the first person I reached out to for design on my own projects later.",
+  },
 ];
 
 function SocialIcon({ svg, size = 24 }: { svg: string; size?: number }) {
@@ -105,7 +131,7 @@ function Nav({ textColor }: { textColor: MotionValue<string> }) {
 
   // Scroll-spy: mark the nav link whose section sits under the line just below the nav.
   useEffect(() => {
-    const ids = ["about", "work", "contact"];
+    const ids = ["about", "work", "recommendation", "contact"];
     const update = () => {
       const line = window.innerHeight * 0.3;
       let current = "";
@@ -144,7 +170,7 @@ function Nav({ textColor }: { textColor: MotionValue<string> }) {
       <motion.div className="relative z-50 max-w-[1440px] mx-auto flex items-center justify-between px-4 md:px-[40px] lg:px-[84px] py-3 md:py-[24px] uppercase text-[14px] md:text-[16px]" style={{ ...manrope, color: textColor }}>
         <span className={`transition-opacity duration-200 ${open ? "opacity-0" : "opacity-100"}`}>UI/UX & AI-Augmented Design</span>
         <div className="hidden md:flex gap-[24px]">
-          {["about", "work", "contact"].map(id => (
+          {["about", "work", "recommendation", "contact"].map(id => (
             <button
               key={id}
               data-cursor="expand"
@@ -177,7 +203,7 @@ function Nav({ textColor }: { textColor: MotionValue<string> }) {
             style={manrope}
           >
             <div className="flex flex-col items-center gap-[28px]">
-              {["about", "work", "contact"].map(id => (
+              {["about", "work", "recommendation", "contact"].map(id => (
                 <button key={id} onClick={() => go(id)} className="font-normal capitalize text-[#fefefe] text-[28px] leading-none">{id}</button>
               ))}
             </div>
@@ -569,6 +595,95 @@ function Works({ textColor }: { textColor: MotionValue<string> }) {
   );
 }
 
+// Testimonials section. Hovering an avatar (desktop) or tapping one (mobile carousel) swaps the
+// quote and highlights that person; inactive cards fade to 50% opacity, their avatars to a further
+// 70% (so ~35% overall). Mobile shows a centred peek-carousel; desktop a static row + side label.
+function Recommendation() {
+  const [active, setActive] = useState(1); // the centre (2nd) person is picked by default, all viewports
+
+  const Card = ({ i, w, h }: { i: number; w: number; h: number }) => {
+    const r = recommendations[i];
+    const isActive = i === active;
+    return (
+      // Inactive cards sit at 50% (avatar a further 70%); hovering the card (group) lifts both back
+      // to full opacity as a preview — clicking is what actually activates it.
+      <span className={`block shrink-0 text-left transition-opacity duration-300 ${isActive ? "opacity-100" : "opacity-50 group-hover:opacity-100"}`} style={{ width: w }}>
+        <img
+          src={r.avatar}
+          alt={r.name}
+          style={{ width: w, height: h }}
+          className={`object-cover transition-opacity duration-300 ${isActive ? "opacity-100" : "opacity-70 group-hover:opacity-100"}`}
+        />
+        <span className="block text-[16px] leading-[24px] font-normal text-[#fefefe] mt-[16px]">{r.name}</span>
+        <span className="block text-[16px] leading-[24px] text-[#9a99a0] mt-[4px]">{r.role}</span>
+      </span>
+    );
+  };
+
+  const label = "What people say about our collaboration and teamwork with me on various projects.";
+
+  return (
+    <section id="recommendation" className="w-full" style={manrope}>
+      <div className="max-w-[1440px] mx-auto px-4 md:px-[40px] lg:px-[84px] py-[80px] md:py-[120px]">
+        <div className="flex flex-col gap-[48px] md:gap-[100px]">
+
+          {/* Quote — all three are stacked in one grid cell, so the box is always as tall as the
+              longest quote (no reflow when switching at any viewport); only the active one shows. */}
+          <div className="relative">
+            <img src={quotesIcon} alt="" aria-hidden="true" className="block w-6 h-6 lg:absolute lg:left-0 lg:top-[6px]" />
+            <div className="grid lg:max-w-[840px] lg:ml-auto mt-[16px] lg:mt-0">
+              {recommendations.map((r, i) => (
+                <motion.div
+                  key={r.name}
+                  aria-hidden={i !== active}
+                  animate={{ opacity: i === active ? 1 : 0 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  className={`col-start-1 row-start-1 ${i === active ? "" : "pointer-events-none"}`}
+                >
+                  <ScrollRevealText
+                    text={r.quote}
+                    offset={["start 0.9", "end 0.65"]}
+                    className="text-[#fefefe] text-[24px] md:text-[36px] lg:text-[44px] leading-[32px] md:leading-[46px] lg:leading-[56px]"
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop: avatar row (hover to switch). The caption is a sticky bottom bar (see App),
+              fading in/out with the section just like the Works "Selected work" note. */}
+          <div className="hidden lg:flex justify-end">
+            <div className="flex gap-[24px]">
+              {recommendations.map((r, i) => (
+                <button key={r.name} type="button" data-cursor="expand" onClick={() => setActive(i)} className="group block">
+                  <Card i={i} w={192} h={260} />
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Phone + tablet: left-aligned, horizontally scrollable row; the centre (2nd) person is
+              picked by default, tap to switch. The caption shows only on phone — tablet (md+) uses
+              the sticky bottom bar, same as desktop, so the note appears exactly once. */}
+          <div className="lg:hidden">
+            <div className="overflow-x-auto -mx-4 px-4 md:mx-0 md:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div className="flex w-max gap-[16px]">
+                {recommendations.map((r, i) => (
+                  <button key={r.name} type="button" onClick={() => setActive(i)} className="group block">
+                    <Card i={i} w={168} h={227} />
+                  </button>
+                ))}
+              </div>
+            </div>
+            <p className="md:hidden text-[#9a99a0] text-[14px] leading-[24px] mt-[40px]">{label}</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function Contact() {
   return (
     <section id="contact" className="w-full" style={manrope}>
@@ -737,6 +852,7 @@ export default function App() {
   // Sticky bottom bar visibility — full while its section fills the screen, faded otherwise.
   const heroBarOpacity = useMotionValue(1);
   const worksBarOpacity = useMotionValue(0);
+  const recommendationBarOpacity = useMotionValue(0);
   const heroBarPE = useTransform(heroBarOpacity, (o) => (o > 0.05 ? "auto" : "none"));
 
   useEffect(() => {
@@ -773,6 +889,16 @@ export default function App() {
         const exit = (r.bottom - (vh - fadeOut)) / fadeOut;
         worksBarOpacity.set(smoothstep(clamp01(Math.min(enter, exit))));
       }
+      // Recommendation bar: same fade-in/out rules as the Works bar.
+      const rec = document.getElementById("recommendation");
+      if (rec) {
+        const r = rec.getBoundingClientRect();
+        const fadeIn = vh * 0.6;
+        const fadeOut = vh * 0.4;
+        const enter = (vh - r.top) / fadeIn;
+        const exit = (r.bottom - (vh - fadeOut)) / fadeOut;
+        recommendationBarOpacity.set(smoothstep(clamp01(Math.min(enter, exit))));
+      }
     };
     update();
     window.addEventListener("scroll", update, { passive: true });
@@ -781,7 +907,7 @@ export default function App() {
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
     };
-  }, [t, heroBarOpacity, worksBarOpacity]);
+  }, [t, heroBarOpacity, worksBarOpacity, recommendationBarOpacity]);
 
   return (
     <motion.div style={{ backgroundColor: bg }} className="min-h-screen w-full relative">
@@ -790,6 +916,7 @@ export default function App() {
       <Intro />
       <About sectionRef={aboutRef} textColor={fg} />
       <Works textColor={fg} />
+      <Recommendation />
       <Contact />
 
       {/* Sticky bottom bar (desktop): hero shows bio + socials on one line; Works shows the caption only */}
@@ -809,6 +936,13 @@ export default function App() {
         <div className="max-w-[1440px] mx-auto px-[40px] lg:px-[84px]">
           <p className="w-[408px] text-[#bcbcbc] text-[16px] leading-[24px]" style={manrope}>
             Selected work 2023/26. Design solutions for commercial projects and educational cases.
+          </p>
+        </div>
+      </motion.div>
+      <motion.div style={{ opacity: recommendationBarOpacity }} className="hidden md:block fixed inset-x-0 bottom-[24px] z-40 pointer-events-none">
+        <div className="max-w-[1440px] mx-auto px-[40px] lg:px-[84px]">
+          <p className="w-[408px] text-[#bcbcbc] text-[16px] leading-[24px]" style={manrope}>
+            What people say about our collaboration and teamwork with me on various projects.
           </p>
         </div>
       </motion.div>
