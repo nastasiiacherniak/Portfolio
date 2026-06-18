@@ -57,7 +57,7 @@ const recommendations = [
     name: "Anastasiia Symantieva",
     role: "Senior UI/UX Designer",
     avatar: avatarAnastasiia,
-    quote: "She owns UI/UX end-to-end. What stands out is how naturally she blends careful, research-backed design with an AI-augmented workflow.",
+    quote: "Anastasiia owns UI/UX end-to-end. What stands out is how naturally she blends careful, research-backed design with an AI-augmented workflow.",
   },
   {
     name: "Oleksii Vynnyk",
@@ -601,6 +601,29 @@ function Works({ textColor }: { textColor: MotionValue<string> }) {
 function Recommendation() {
   const [active, setActive] = useState(1); // the centre (2nd) person is picked by default, all viewports
 
+  // Mobile peek-carousel scrolling: the middle card rests centred; tapping the first card scrolls it
+  // flush to the left edge and the last card flush to the right edge — no inner padding either side.
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollToCard = (i: number, smooth = true) => {
+    const container = scrollRef.current;
+    const card = container?.firstElementChild?.children[i] as HTMLElement | undefined;
+    if (!container || !card || container.clientWidth === 0) return;
+    const cardLeft = card.getBoundingClientRect().left - container.getBoundingClientRect().left + container.scrollLeft;
+    let target: number;
+    if (i === 0) target = cardLeft; // first card flush left
+    else if (i === recommendations.length - 1) target = cardLeft + card.offsetWidth - container.clientWidth; // last flush right
+    else target = cardLeft + card.offsetWidth / 2 - container.clientWidth / 2; // middle centred
+    target = Math.max(0, Math.min(container.scrollWidth - container.clientWidth, target));
+    container.scrollTo({ left: target, behavior: smooth ? "smooth" : "instant" });
+  };
+  // Centre the default card on mount (no animation), and keep the active card aligned across resizes.
+  useLayoutEffect(() => { scrollToCard(active, false); }, []);
+  useEffect(() => {
+    const onResize = () => scrollToCard(active, false);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [active]);
+
   const Card = ({ i, w, h }: { i: number; w: number; h: number }) => {
     const r = recommendations[i];
     const isActive = i === active;
@@ -666,10 +689,10 @@ function Recommendation() {
               picked by default, tap to switch. The caption shows only on phone — tablet (md+) uses
               the sticky bottom bar, same as desktop, so the note appears exactly once. */}
           <div className="lg:hidden">
-            <div className="overflow-x-auto -mx-4 px-4 md:mx-0 md:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div ref={scrollRef} className="overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               <div className="flex w-max gap-[16px]">
                 {recommendations.map((r, i) => (
-                  <button key={r.name} type="button" onClick={() => setActive(i)} className="group block">
+                  <button key={r.name} type="button" onClick={() => { setActive(i); scrollToCard(i); }} className="group block">
                     <Card i={i} w={168} h={227} />
                   </button>
                 ))}
