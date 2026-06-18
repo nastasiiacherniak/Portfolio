@@ -638,7 +638,7 @@ function Recommendation() {
           className={`object-cover transition-opacity duration-300 ${isActive ? "opacity-100" : "opacity-70 group-hover:opacity-100"}`}
         />
         <span className="block text-[16px] leading-[24px] font-normal text-[#fefefe] mt-[16px]">{r.name}</span>
-        <span className="block text-[16px] leading-[24px] text-[#9a99a0] mt-[4px]">{r.role}</span>
+        <span className="block text-[16px] leading-[24px] font-normal text-[#9a99a0] mt-0">{r.role}</span>
       </span>
     );
   };
