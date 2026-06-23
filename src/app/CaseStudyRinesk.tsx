@@ -3,17 +3,17 @@ import { Link } from "react-router";
 import { motion, useScroll, useTransform } from "motion/react";
 import { gallery, manrope, Reveal, RevealTitle, Contact, CustomCursor, useMediaQuery } from "./App";
 
-import imgHero from "@/imports/rinesk/hero.jpg";
-import imgProject1 from "@/imports/rinesk/project-1.jpg";
-import imgProject2 from "@/imports/rinesk/project-2.jpg";
-import imgApproach2 from "@/imports/rinesk/approach-2.jpg";
-import imgApproach3 from "@/imports/rinesk/approach-3.jpg";
-import imgOutcomes1 from "@/imports/rinesk/outcomes-1.jpg";
-import imgOutcomes2 from "@/imports/rinesk/outcomes-2.jpg";
-import imgOutcomes3 from "@/imports/rinesk/outcomes-3.jpg";
-import imgOutcomes4 from "@/imports/rinesk/outcomes-4.jpg";
+import imgHero from "@/imports/rinesk/hero.webp";
+import imgProject1 from "@/imports/rinesk/project-1.webp";
+import imgProject2 from "@/imports/rinesk/project-2.webp";
+import imgApproach2 from "@/imports/rinesk/approach-2.webp";
+import imgApproach3 from "@/imports/rinesk/approach-3.webp";
+import imgOutcomes1 from "@/imports/rinesk/outcomes-1.webp";
+import imgOutcomes2 from "@/imports/rinesk/outcomes-2.webp";
+import imgOutcomes3 from "@/imports/rinesk/outcomes-3.webp";
+import imgOutcomes4 from "@/imports/rinesk/outcomes-4.webp";
 import vidApproach from "@/imports/rinesk/approach.mp4";
-import imgFincube from "@/imports/rinesk/fincube.jpg";
+import imgFincube from "@/imports/rinesk/fincube.webp";
 
 const CREAM = "#fefefe";
 

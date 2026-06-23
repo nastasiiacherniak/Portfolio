@@ -3,20 +3,20 @@ import { Link } from "react-router";
 import { motion, useScroll, useTransform } from "motion/react";
 import { gallery, manrope, Reveal, RevealTitle, Contact, CustomCursor, useMediaQuery } from "./App";
 
-import imgHero from "@/imports/brushbuddy/hero.jpg";
-import imgHeroWire from "@/imports/brushbuddy/hero-wireframe.jpg";
-import imgWow from "@/imports/brushbuddy/wow.jpg";
-import imgTablet from "@/imports/brushbuddy/tablet.jpg";
-import imgTabletFront from "@/imports/brushbuddy/tablet-front.jpg";
-import imgTabletDesk from "@/imports/brushbuddy/tablet-desk.jpg";
-import imgProposition from "@/imports/brushbuddy/proposition.jpg";
-import imgProduct from "@/imports/brushbuddy/product.jpg";
-import imgCatalog from "@/imports/brushbuddy/catalog.jpg";
-import imgReviews from "@/imports/brushbuddy/reviews.jpg";
+import imgHero from "@/imports/brushbuddy/hero.webp";
+import imgHeroWire from "@/imports/brushbuddy/hero-wireframe.webp";
+import imgWow from "@/imports/brushbuddy/wow.webp";
+import imgTablet from "@/imports/brushbuddy/tablet.webp";
+import imgTabletFront from "@/imports/brushbuddy/tablet-front.webp";
+import imgTabletDesk from "@/imports/brushbuddy/tablet-desk.webp";
+import imgProposition from "@/imports/brushbuddy/proposition.webp";
+import imgProduct from "@/imports/brushbuddy/product.webp";
+import imgCatalog from "@/imports/brushbuddy/catalog.webp";
+import imgReviews from "@/imports/brushbuddy/reviews.webp";
 import vidBrush from "@/imports/brushbuddy/brushbuddy.mp4";
-import imgApproachPoster from "@/imports/brushbuddy/approach-poster.jpg";
+import imgApproachPoster from "@/imports/brushbuddy/approach-poster.webp";
 import vidDialog from "@/imports/brushbuddy/dialog.mp4";
-import imgNext from "@/imports/brushbuddy/jukrassic.jpg";
+import imgNext from "@/imports/brushbuddy/jukrassic.webp";
 
 const CREAM = "#fefefe";
 
@@ -270,9 +270,7 @@ export default function CaseStudyBrushBuddy() {
           </div>
         </div>
 
-        <Reveal>
-          <video src={vidDialog} autoPlay muted loop playsInline className="w-full mt-[40px] md:mt-[80px] lg:mt-[120px]" />
-        </Reveal>
+        <Reveal delay={0.1}><video src={vidDialog} autoPlay muted loop playsInline className="w-full mt-[40px] md:mt-[80px] lg:mt-[120px]" /></Reveal>
       </section>
 
       {/* 3 — APPROACH */}

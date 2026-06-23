@@ -3,18 +3,18 @@ import { Link } from "react-router";
 import { motion, useScroll, useTransform } from "motion/react";
 import { gallery, manrope, Reveal, RevealTitle, Contact, CustomCursor, useMediaQuery } from "./App";
 
-import imgHero from "@/imports/fincube/hero.jpg";
-import imgHeroGray from "@/imports/fincube/hero-grayscale.jpg";
-import imgProject1 from "@/imports/fincube/project-1.jpg";
-import imgProject2 from "@/imports/fincube/project-2.jpg";
-import imgApproach2 from "@/imports/fincube/approach-2.jpg";
-import imgApproach3 from "@/imports/fincube/approach-3.jpg";
-import imgOutcomes1 from "@/imports/fincube/outcomes-1.jpg";
-import imgOutcomes2 from "@/imports/fincube/outcomes-2.jpg";
-import imgOutcomes3 from "@/imports/fincube/outcomes-3.jpg";
-import imgOutcomes4 from "@/imports/fincube/outcomes-4.jpg";
+import imgHero from "@/imports/fincube/hero.webp";
+import imgHeroGray from "@/imports/fincube/hero-grayscale.webp";
+import imgProject1 from "@/imports/fincube/project-1.webp";
+import imgProject2 from "@/imports/fincube/project-2.webp";
+import imgApproach2 from "@/imports/fincube/approach-2.webp";
+import imgApproach3 from "@/imports/fincube/approach-3.webp";
+import imgOutcomes1 from "@/imports/fincube/outcomes-1.webp";
+import imgOutcomes2 from "@/imports/fincube/outcomes-2.webp";
+import imgOutcomes3 from "@/imports/fincube/outcomes-3.webp";
+import imgOutcomes4 from "@/imports/fincube/outcomes-4.webp";
 import vidApproach from "@/imports/fincube/approach.mp4";
-import imgBrushBuddy from "@/imports/fincube/brushbuddy.jpg";
+import imgBrushBuddy from "@/imports/fincube/brushbuddy.webp";
 
 const CREAM = "#fefefe";
 

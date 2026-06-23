@@ -1,23 +1,21 @@
-import { useState, useEffect, useLayoutEffect, useRef, forwardRef } from "react";
+import { useState, useEffect, useLayoutEffect, useRef, forwardRef, lazy, Suspense } from "react";
 import { useNavigate } from "react-router";
-import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring, type MotionValue } from "motion/react";
-import Lottie from "lottie-react";
+import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useMotionTemplate, useSpring, type MotionValue } from "motion/react";
+const PaperFly = lazy(() => import("./PaperFly"));
 
-import paperFly from "@/imports/paper-fly.json";
-
-import imgHero from "../../images/Hero.jpeg";
-import imgRinesk from "@/imports/Desktop1440Px/60177f0e23550b04257c09239ac9b4a431ae525a.png";
-import imgFincube from "../../images/Fincube_min.jpg";
-import imgBrush from "../../images/Brushbuddy_var_min.jpg";
-import imgJukra from "../../images/Jukrassic Pork_min.jpg";
-import imgSel1 from "../../images/1_openmind.jpg";
-import imgSel2 from "../../images/2_1000+1song.jpg";
-import imgSel3 from "../../images/3_svitlytsia.jpg";
-import imgSel4 from "../../images/4_Pixel.jpg";
-import imgSel5 from "../../images/5_Swamispath.jpg";
-import avatarBorys from "../../images/Avatar Borys Romanenko.jpg";
-import avatarAnastasiia from "../../images/Avatar Anastasiia Symantieva.jpg";
-import avatarOleksii from "../../images/Avatar Oleksii Vynnyk.jpg";
+import imgHero from "../../images/Hero.webp";
+import imgRinesk from "../../images/Rinesk_min.webp";
+import imgFincube from "../../images/Fincube_min.webp";
+import imgBrush from "../../images/Brushbuddy_var_min.webp";
+import imgJukra from "../../images/Jukrassic Pork_min.webp";
+import imgSel1 from "../../images/1_openmind.webp";
+import imgSel2 from "../../images/2_1000+1song.webp";
+import imgSel3 from "../../images/3_svitlytsia.webp";
+import imgSel4 from "../../images/4_Pixel.webp";
+import imgSel5 from "../../images/5_Swamispath.webp";
+import avatarBorys from "../../images/Avatar Borys Romanenko.webp";
+import avatarAnastasiia from "../../images/Avatar Anastasiia Symantieva.webp";
+import avatarOleksii from "../../images/Avatar Oleksii Vynnyk.webp";
 import quotesIcon from "../../Isons_svg/quotes.svg";
 
 import linkedinSvg from "@/imports/Socials/linkedin.svg?raw";
@@ -238,7 +236,7 @@ function Intro() {
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="w-[240px] h-[316px] bg-[#262d33] overflow-hidden"
         >
-          <img src={imgHero} alt="" className="w-full h-full object-cover" />
+          <img src={imgHero} alt="" fetchpriority="high" decoding="async" className="w-full h-full object-cover" />
         </motion.div>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -284,6 +282,8 @@ function Intro() {
         <motion.img
           src={imgHero}
           alt=""
+          fetchpriority="high"
+          decoding="async"
           style={{ y }}
           className="absolute left-1/2 -translate-x-1/2 top-[152px] w-[408px] h-[536px] object-cover"
         />
@@ -520,6 +520,8 @@ function Works({ textColor }: { textColor: MotionValue<string> }) {
                   <img
                     src={projects[active].image}
                     alt={projects[active].alt}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover"
                   />
                 </motion.div>
@@ -554,7 +556,7 @@ function Works({ textColor }: { textColor: MotionValue<string> }) {
                     Keep the 408×300 proportion at every size: fixed 408×300 from ~440px up
                     (capped by max-w-[408px]); below that it scales down with the side margins
                     while preserving the aspect ratio. */}
-                <img src={p.image} alt={p.alt} className="lg:hidden order-last w-full max-w-[408px] aspect-[408/300] object-cover" />
+                <img src={p.image} alt={p.alt} loading="lazy" decoding="async" className="lg:hidden order-last w-full max-w-[408px] aspect-[408/300] object-cover" />
                 <div className="flex items-end justify-center w-full gap-[12px] md:gap-[24px] lg:gap-[56px]">
                   <RevealTitle
                     ref={(el) => { titleRefs.current[i] = el; }}
@@ -582,7 +584,7 @@ function Works({ textColor }: { textColor: MotionValue<string> }) {
             style={{ x: marqueeX }}
           >
             {selectedWork.map((w, i) => (
-              <img key={i} src={w.src} alt={w.alt} className="w-[240px] md:w-[408px] h-[180px] md:h-[300px] object-cover opacity-70 shrink-0 transition-opacity duration-300 hover:opacity-100" />
+              <img key={i} src={w.src} alt={w.alt} loading="lazy" decoding="async" className="w-[240px] md:w-[408px] h-[180px] md:h-[300px] object-cover opacity-70 shrink-0 transition-opacity duration-300 hover:opacity-100" />
             ))}
           </motion.div>
         </div>
@@ -634,6 +636,8 @@ function Recommendation() {
         <img
           src={r.avatar}
           alt={r.name}
+          loading="lazy"
+          decoding="async"
           style={{ width: w, height: h }}
           className={`object-cover transition-opacity duration-300 ${isActive ? "opacity-100" : "opacity-70 group-hover:opacity-100"}`}
         />
@@ -721,7 +725,9 @@ export function Contact() {
             <Reveal delay={0.1} className="shrink-0">
               {/* Keeps the source file's 1:1 (600×600) proportions */}
               <div className="w-[200px] md:w-[280px] lg:w-[360px] aspect-square shrink-0">
-                <Lottie animationData={paperFly} loop className="w-full h-full" />
+                <Suspense fallback={null}>
+                  <PaperFly />
+                </Suspense>
               </div>
             </Reveal>
           </div>
@@ -848,11 +854,14 @@ export function CustomCursor() {
 }
 
 function RevealWord({ progress, range, word }: { progress: MotionValue<number>; range: [number, number]; word: string }) {
-  const opacity = useTransform(progress, range, [0.15, 1]);
-  return <motion.span style={{ opacity }}>{word} </motion.span>;
+  // Each word eases in from low-opacity + blurred to fully sharp as the scroll progress crosses its range.
+  const opacity = useTransform(progress, range, [0.1, 1]);
+  const blur = useTransform(progress, range, [6, 0]);
+  const filter = useMotionTemplate`blur(${blur}px)`;
+  return <motion.span style={{ opacity, filter }}>{word} </motion.span>;
 }
 
-// Read-along reveal: words brighten from dim to full opacity as the paragraph scrolls through view.
+// Read-along reveal: words sharpen from dim+blurred to full opacity as the paragraph scrolls through view.
 export function ScrollRevealText({ text, className, style, offset = ["start 0.9", "end 0.45"] }: { text: string; className?: string; style?: React.CSSProperties; offset?: any }) {
   const ref = useRef<HTMLParagraphElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset });

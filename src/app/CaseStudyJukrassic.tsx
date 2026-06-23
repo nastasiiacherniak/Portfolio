@@ -3,18 +3,18 @@ import { Link } from "react-router";
 import { motion, useScroll, useTransform } from "motion/react";
 import { gallery, manrope, Reveal, RevealTitle, Contact, CustomCursor, useMediaQuery } from "./App";
 
-import imgHero from "@/imports/jukrassic/hero.jpg";
-import imgProject1 from "@/imports/jukrassic/project-1.jpg";
+import imgHero from "@/imports/jukrassic/hero.webp";
+import imgProject1 from "@/imports/jukrassic/project-1.webp";
 import vidProject from "@/imports/jukrassic/project-video.mp4";
 import vidApproach from "@/imports/jukrassic/approach.mp4";
-import imgApproachPoster from "@/imports/jukrassic/approach-poster.jpg";
-import imgApproach2 from "@/imports/jukrassic/approach-2.jpg";
-import imgApproach3 from "@/imports/jukrassic/approach-3.jpg";
-import imgOutcomes1 from "@/imports/jukrassic/outcomes-1.jpg";
-import imgOutcomes2 from "@/imports/jukrassic/outcomes-2.jpg";
-import imgOutcomes3 from "@/imports/jukrassic/outcomes-3.jpg";
-import imgOutcomes4 from "@/imports/jukrassic/outcomes-4.jpg";
-import imgRinesk from "@/imports/jukrassic/rinesk.jpg";
+import imgApproachPoster from "@/imports/jukrassic/approach-poster.webp";
+import imgApproach2 from "@/imports/jukrassic/approach-2.webp";
+import imgApproach3 from "@/imports/jukrassic/approach-3.webp";
+import imgOutcomes1 from "@/imports/jukrassic/outcomes-1.webp";
+import imgOutcomes2 from "@/imports/jukrassic/outcomes-2.webp";
+import imgOutcomes3 from "@/imports/jukrassic/outcomes-3.webp";
+import imgOutcomes4 from "@/imports/jukrassic/outcomes-4.webp";
+import imgRinesk from "@/imports/jukrassic/rinesk.webp";
 
 const CREAM = "#fefefe";
 

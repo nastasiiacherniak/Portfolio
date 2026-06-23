@@ -35,4 +35,20 @@ export default defineConfig({
 
   // File types to support raw imports. Never add .css, .tsx, or .ts files to this.
   assetsInclude: ['**/*.svg', '**/*.csv'],
+
+  build: {
+    rollupOptions: {
+      output: {
+        // Split heavy, rarely-changing libraries into their own chunks so the browser can
+        // fetch them in parallel and cache them across deploys (app code changes far more often).
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return
+          if (id.includes('lottie')) return 'lottie'
+          if (/[\\/]node_modules[\\/]motion/.test(id) || id.includes('framer-motion')) return 'motion'
+          if (/[\\/]node_modules[\\/](react|react-dom|react-router|scheduler)[\\/]/.test(id)) return 'react'
+          return 'vendor'
+        },
+      },
+    },
+  },
 })
