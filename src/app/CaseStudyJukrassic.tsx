@@ -172,8 +172,7 @@ export default function CaseStudyJukrassic() {
   // Land on the case study at the very top, instantly (the homepage leaves scroll-behavior:smooth
   // on <html>, which would otherwise animate the jump from the homepage's scroll position).
   useLayoutEffect(() => {
-    document.documentElement.style.scrollBehavior = "auto";
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, []);
 
   return (

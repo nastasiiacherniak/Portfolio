@@ -538,10 +538,10 @@ function Works({ textColor }: { textColor: MotionValue<string> }) {
                 onClick={(e) => {
                   if (!p.to) return;
                   e.preventDefault();
-                  // Reset scroll to the top synchronously *before* navigating so the case study
-                  // never flashes at the homepage's scroll position during the route transition.
-                  document.documentElement.style.scrollBehavior = "auto";
-                  window.scrollTo(0, 0);
+                  // Remember where we are so returning from the case study restores this exact spot.
+                  // We DON'T scroll the homepage here — the case study lands itself at the top on
+                  // mount (useLayoutEffect, before paint), so there's no flash and no lost position.
+                  sessionStorage.setItem("homeScroll", String(window.scrollY));
                   navigate(p.to);
                 }}
                 data-cursor="project"
@@ -886,6 +886,16 @@ export default function App() {
   const worksBarOpacity = useMotionValue(0);
   const recommendationBarOpacity = useMotionValue(0);
   const heroBarPE = useTransform(heroBarOpacity, (o) => (o > 0.05 ? "auto" : "none"));
+
+  // Returning from a case study (Back link or browser back): restore the scroll position the visitor
+  // had when they opened the project. Runs before paint so there's no jump. A fresh load of "/" has
+  // nothing saved, so it stays at the top.
+  useLayoutEffect(() => {
+    const saved = sessionStorage.getItem("homeScroll");
+    if (saved === null) return;
+    sessionStorage.removeItem("homeScroll");
+    window.scrollTo({ top: parseInt(saved, 10) || 0, left: 0, behavior: "instant" });
+  }, []);
 
   useEffect(() => {
     document.documentElement.style.scrollBehavior = "smooth";
