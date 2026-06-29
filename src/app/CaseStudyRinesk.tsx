@@ -108,13 +108,13 @@ function CaseNav() {
     <nav className="fixed top-0 left-0 right-0 z-50">
       {/* Progressive blur: stacked backdrop-blur layers fading out downward (same as homepage). */}
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[180%]">
-        <div className="absolute inset-0 backdrop-blur-[2px] [mask-image:linear-gradient(to_bottom,#000_0%,#000_55%,transparent_90%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_0%,#000_55%,transparent_90%)]" />
-        <div className="absolute inset-0 backdrop-blur-[5px] [mask-image:linear-gradient(to_bottom,#000_0%,#000_30%,transparent_65%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_0%,#000_30%,transparent_65%)]" />
-        <div className="absolute inset-0 backdrop-blur-[10px] [mask-image:linear-gradient(to_bottom,#000_0%,transparent_40%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_0%,transparent_40%)]" />
+        <div className="absolute inset-0 backdrop-blur-[4px] [mask-image:linear-gradient(to_bottom,#000_0%,#000_55%,transparent_90%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_0%,#000_55%,transparent_90%)]" />
+        <div className="absolute inset-0 backdrop-blur-[10px] [mask-image:linear-gradient(to_bottom,#000_0%,#000_30%,transparent_65%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_0%,#000_30%,transparent_65%)]" />
+        <div className="absolute inset-0 backdrop-blur-[20px] [mask-image:linear-gradient(to_bottom,#000_0%,transparent_40%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_0%,transparent_40%)]" />
       </div>
       <div className={`relative z-50 ${SHELL} flex items-center justify-between py-3 md:py-[24px] uppercase text-[14px] md:text-[16px] text-[#fefefe]`} style={manrope}>
         <Link to="/" data-cursor="expand" className="font-normal transition-colors duration-300 hover:text-[#c39e7b]">
-          ← BACK
+          ← BACK HOME
         </Link>
         <div className="hidden md:flex gap-[24px]">
           {[["Project info", "project-info"], ["Approach", "approach"], ["Outcomes", "outcomes"]].map(([t, id]) => (

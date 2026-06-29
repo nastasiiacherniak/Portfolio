@@ -161,9 +161,9 @@ function Nav({ textColor }: { textColor: MotionValue<string> }) {
       {/* Progressive blur: stacked backdrop-blur layers whose masks fade out downward,
           so the blur is strongest at the very top and dissolves below the bar. */}
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[180%]">
-        <div className="absolute inset-0 backdrop-blur-[2px] [mask-image:linear-gradient(to_bottom,#000_0%,#000_55%,transparent_90%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_0%,#000_55%,transparent_90%)]" />
-        <div className="absolute inset-0 backdrop-blur-[5px] [mask-image:linear-gradient(to_bottom,#000_0%,#000_30%,transparent_65%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_0%,#000_30%,transparent_65%)]" />
-        <div className="absolute inset-0 backdrop-blur-[10px] [mask-image:linear-gradient(to_bottom,#000_0%,transparent_40%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_0%,transparent_40%)]" />
+        <div className="absolute inset-0 backdrop-blur-[4px] [mask-image:linear-gradient(to_bottom,#000_0%,#000_55%,transparent_90%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_0%,#000_55%,transparent_90%)]" />
+        <div className="absolute inset-0 backdrop-blur-[10px] [mask-image:linear-gradient(to_bottom,#000_0%,#000_30%,transparent_65%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_0%,#000_30%,transparent_65%)]" />
+        <div className="absolute inset-0 backdrop-blur-[20px] [mask-image:linear-gradient(to_bottom,#000_0%,transparent_40%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_0%,transparent_40%)]" />
       </div>
       <motion.div className="relative z-50 max-w-[1440px] mx-auto flex items-center justify-between px-4 md:px-[40px] lg:px-[84px] py-3 md:py-[24px] uppercase text-[14px] md:text-[16px]" style={{ ...manrope, color: textColor }}>
         <span className={`transition-opacity duration-200 ${open ? "opacity-0" : "opacity-100"}`}>UI/UX & AI-Augmented Design</span>
@@ -299,7 +299,7 @@ function Intro() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.8 }}
-            className="absolute right-[40px] lg:right-auto lg:left-[calc(50%_+_228px)] top-[224px] text-[#bcbcbc] text-[16px] leading-[24px] whitespace-nowrap"
+            className="absolute right-[40px] lg:right-auto lg:left-[calc(50%_+_228px)] top-[calc(130px_+_clamp(48px,11vw,132px)_*_0.802)] text-[#bcbcbc] text-[16px] leading-[24px] whitespace-nowrap"
             style={manrope}
           >
             Based in Ukraine, available worldwide
