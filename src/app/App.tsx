@@ -1,6 +1,7 @@
 import { useState, useEffect, useLayoutEffect, useRef, forwardRef, lazy, Suspense } from "react";
 import { useNavigate } from "react-router";
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useMotionTemplate, useSpring, type MotionValue } from "motion/react";
+import Float from "./components/fancy/float";
 const PaperFly = lazy(() => import("./PaperFly"));
 
 import imgHero from "../../images/Hero.webp";
@@ -229,15 +230,17 @@ function Intro() {
   return (
     <section id="intro" style={{ position: "relative" }} className="w-full overflow-hidden">
       {/* Mobile layout */}
-      <div className="md:hidden relative pt-[64px] pb-[24px] px-4 min-h-[100svh] flex flex-col">
-        <motion.div
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="w-[240px] h-[316px] bg-[#262d33] overflow-hidden"
-        >
-          <img src={imgHero} alt="" fetchpriority="high" decoding="async" className="w-full h-full object-cover" />
-        </motion.div>
+      <div className="md:hidden relative pt-[64px] pb-[24px] px-4 min-h-[100svh] flex flex-col [perspective:1000px]">
+        <Float speed={0.5} amplitude={[4, 10, 6]} rotationRange={[3, 4, 2]} className="w-[240px]">
+          <motion.div
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            className="w-[240px] h-[316px] bg-[#262d33] overflow-hidden"
+          >
+            <img src={imgHero} alt="" fetchpriority="high" decoding="async" className="w-full h-full object-cover" />
+          </motion.div>
+        </Float>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -278,15 +281,22 @@ function Intro() {
       </div>
 
       {/* Desktop layout */}
-      <div className="hidden md:block relative h-[840px] max-w-[1440px] mx-auto">
-        <motion.img
-          src={imgHero}
-          alt=""
-          fetchpriority="high"
-          decoding="async"
-          style={{ y }}
-          className="absolute left-1/2 -translate-x-1/2 top-[152px] w-[408px] h-[536px] object-cover"
-        />
+      <div className="hidden md:block relative h-[840px] max-w-[1440px] mx-auto [perspective:1200px]">
+        <Float
+          speed={0.5}
+          amplitude={[6, 14, 8]}
+          rotationRange={[5, 6, 2]}
+          className="absolute left-[calc(50%_-_204px)] top-[152px] w-[408px] h-[536px]"
+        >
+          <motion.img
+            src={imgHero}
+            alt=""
+            fetchpriority="high"
+            decoding="async"
+            style={{ y }}
+            className="w-full h-full object-cover"
+          />
+        </Float>
         <motion.div style={{ opacity }} className="absolute inset-0">
           <div className="absolute left-1/2 top-[120px] -translate-x-1/2 whitespace-nowrap">
             <RevealTitle
