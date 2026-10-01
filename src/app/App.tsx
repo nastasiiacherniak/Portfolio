@@ -2,6 +2,7 @@ import { useState, useEffect, useLayoutEffect, useRef, forwardRef, lazy, Suspens
 import { useNavigate } from "react-router";
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useMotionTemplate, useSpring, type MotionValue } from "motion/react";
 import Float from "./components/fancy/float";
+import { TextAnimate } from "./components/magicui/text-animate";
 const PaperFly = lazy(() => import("./PaperFly"));
 
 import imgHero from "../../images/Hero.webp";
@@ -241,15 +242,16 @@ function Intro() {
             <img src={imgHero} alt="" fetchpriority="high" decoding="async" className="w-full h-full object-cover" />
           </motion.div>
         </Float>
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 1 }}
+        <TextAnimate
+          as="h1"
+          animation="blurInUp"
+          by="character"
+          once
           className="text-[#c39e7b] text-[40px] leading-none mt-6"
           style={gallery}
         >
           Anastasiia Cherniak
-        </motion.h1>
+        </TextAnimate>
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -299,11 +301,16 @@ function Intro() {
         </Float>
         <motion.div style={{ opacity }} className="absolute inset-0">
           <div className="absolute left-1/2 top-[120px] -translate-x-1/2 whitespace-nowrap">
-            <RevealTitle
-              text="Anastasiia Cherniak"
+            <TextAnimate
+              as="h1"
+              animation="blurInUp"
+              by="character"
+              once
               className="text-[#c39e7b] text-[clamp(48px,11vw,132px)] leading-none whitespace-nowrap"
               style={gallery}
-            />
+            >
+              Anastasiia Cherniak
+            </TextAnimate>
           </div>
           <motion.p
             initial={{ opacity: 0 }}
@@ -567,14 +574,20 @@ function Works({ textColor }: { textColor: MotionValue<string> }) {
                     (capped by max-w-[408px]); below that it scales down with the side margins
                     while preserving the aspect ratio. */}
                 <img src={p.image} alt={p.alt} loading="lazy" decoding="async" className="lg:hidden order-last w-full max-w-[408px] aspect-[408/300] object-cover" />
-                <div className="flex items-end justify-center w-full gap-[12px] md:gap-[24px] lg:gap-[56px]">
-                  <RevealTitle
-                    ref={(el) => { titleRefs.current[i] = el; }}
-                    text={p.title}
-                    triggerOnView
+                <div
+                  ref={(el) => { titleRefs.current[i] = el; }}
+                  className="flex items-end justify-center w-full gap-[12px] md:gap-[24px] lg:gap-[56px]"
+                >
+                  <TextAnimate
+                    as="h2"
+                    animation="blurInUp"
+                    by="character"
+                    once
                     className="text-[40px] md:text-[64px] lg:text-[88px] leading-none whitespace-nowrap"
                     style={gallery}
-                  />
+                  >
+                    {p.title}
+                  </TextAnimate>
                   <p className="text-[14px] md:text-[16px] leading-[24px] shrink-0" style={manrope}>{p.year}</p>
                 </div>
                 <div className="flex justify-between w-full text-[12px] md:text-[16px] leading-[20px] md:leading-[24px] gap-2" style={manrope}>

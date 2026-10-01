@@ -1,7 +1,8 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import { motion, useScroll, useTransform } from "motion/react";
-import { gallery, manrope, Reveal, RevealTitle, Contact, CustomCursor, useMediaQuery } from "./App";
+import { gallery, manrope, Reveal, Contact, CustomCursor, useMediaQuery } from "./App";
+import { TextAnimate } from "./components/magicui/text-animate";
 
 import imgHero from "@/imports/jukrassic/hero.webp";
 import imgProject1 from "@/imports/jukrassic/project-1.webp";
@@ -33,13 +34,15 @@ function SectionHead({ num, title, label, children }: { num: string; title: stri
   return (
     <div className="relative pt-[40px] lg:pt-0">
       <span className="absolute left-0 top-0 text-[16px] md:text-[20px] text-[#fefefe]" style={manrope}>{num}</span>
-      <Reveal className="w-full lg:w-[840px] lg:ml-auto lg:pr-[84px]">
-        <h2 className="text-[clamp(30px,4.4vw,56px)] leading-[1.08]" style={{ ...gallery, color: CREAM }}>{title}</h2>
-        <div className="flex flex-col md:flex-row gap-[16px] md:gap-[24px] mt-[32px] md:mt-[56px]">
-          <span className="w-full md:w-[120px] lg:w-[187px] shrink-0 text-[14px] md:text-[16px] text-[#fefefe]">{label}</span>
-          <div className="flex-1 text-[14px] md:text-[16px] leading-[24px] text-[#9a99a0] space-y-[16px]">{children}</div>
-        </div>
-      </Reveal>
+      <div className="w-full lg:w-[840px] lg:ml-auto lg:pr-[84px]">
+        <TextAnimate as="h2" animation="blurInUp" by="word" once className="text-[clamp(30px,4.4vw,56px)] leading-[1.08]" style={{ ...gallery, color: CREAM }}>{title}</TextAnimate>
+        <Reveal>
+          <div className="flex flex-col md:flex-row gap-[16px] md:gap-[24px] mt-[32px] md:mt-[56px]">
+            <span className="w-full md:w-[120px] lg:w-[187px] shrink-0 text-[14px] md:text-[16px] text-[#fefefe]">{label}</span>
+            <div className="flex-1 text-[14px] md:text-[16px] leading-[24px] text-[#9a99a0] space-y-[16px]">{children}</div>
+          </div>
+        </Reveal>
+      </div>
     </div>
   );
 }
@@ -186,12 +189,16 @@ export default function CaseStudyJukrassic() {
 
       {/* 1 — INTRO */}
       <section className={`${SHELL} pt-[100px] md:pt-[80px] lg:pt-[120px] pb-[60px] md:pb-[80px] lg:pb-[120px]`}>
-        <RevealTitle
+        <TextAnimate
           as="h1"
-          text="Jukrassic Pork"
+          animation="blurInUp"
+          by="character"
+          once
           className="text-center text-[#c39e7b] text-[clamp(56px,9vw,132px)] leading-none"
           style={gallery}
-        />
+        >
+          Jukrassic Pork
+        </TextAnimate>
 
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-[24px] md:gap-[40px] mt-[48px] md:mt-[80px]">
           <Meta label="Services" value="Website redesign" />
@@ -295,13 +302,16 @@ export default function CaseStudyJukrassic() {
       <section className={`${SHELL} pt-[60px] md:pt-[80px] lg:pt-[120px]`}>
         <p className="text-center text-[16px] text-[#fefefe]">Next project</p>
         <Link to="/work/rinesk" data-cursor="project" className="group block mt-[40px] md:mt-[60px]">
-          <RevealTitle
+          <TextAnimate
             as="span"
-            text="Rinesk"
-            triggerOnView
+            animation="blurInUp"
+            by="character"
+            once
             className="block text-center text-[clamp(48px,8vw,96px)] leading-none"
             style={{ ...gallery, color: "#fefefe" }}
-          />
+          >
+            Rinesk
+          </TextAnimate>
           {isDesktop ? (
             <RineskReveal src={imgRinesk} />
           ) : (
