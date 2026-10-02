@@ -28,17 +28,18 @@ function Meta({ label, value }: { label: string; value: string }) {
   );
 }
 
-// Section header: number in the left gutter; the title + label/paragraph column is 840px
-// wide, right-aligned to the content edge, with an 84px inner right margin (→ 756px of content).
+// Section header: number in the left gutter. On desktop the paragraph starts on the same axis as the
+// right column of the 2-col image grid below (50% + 12px); title + label start 216px left of it
+// (192px label + 24px gap), i.e. 432px from the number at 1440. 84px inner right margin.
 function SectionHead({ num, title, label, children }: { num: string; title: string; label: string; children: React.ReactNode }) {
   return (
     <div className="relative pt-[40px] lg:pt-0">
       <span className="absolute left-0 top-0 text-[16px] md:text-[20px] text-[#fefefe]" style={manrope}>{num}</span>
-      <div className="w-full lg:w-[840px] lg:ml-auto lg:pr-[84px]">
+      <div className="w-full lg:w-auto lg:ml-[calc(50%-204px)] lg:pr-[84px]">
         <TextAnimate as="h2" animation="blurInUp" by="word" once className="text-[clamp(30px,4.4vw,56px)] leading-[1.08]" style={{ ...gallery, color: CREAM }}>{title}</TextAnimate>
         <Reveal>
           <div className="flex flex-col md:flex-row gap-[16px] md:gap-[24px] mt-[32px] md:mt-[56px]">
-            <span className="w-full md:w-[120px] lg:w-[187px] shrink-0 text-[14px] md:text-[16px] text-[#fefefe]">{label}</span>
+            <span className="w-full md:w-[120px] lg:w-[192px] shrink-0 text-[14px] md:text-[16px] text-[#fefefe]">{label}</span>
             <div className="flex-1 text-[14px] md:text-[16px] leading-[24px] text-[#9a99a0] space-y-[16px]">{children}</div>
           </div>
         </Reveal>
