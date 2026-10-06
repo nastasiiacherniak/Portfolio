@@ -422,7 +422,7 @@ function About({ sectionRef, textColor }: { sectionRef: React.RefObject<HTMLElem
               text="Working on each project, I empathize and focused on users interests and needs while taking into account the business requirements, which helps me to define problems, ideate, prototype the end product with a neat delightful visual interface solution that will be profitable for the owner."
             />
             <div className="flex flex-col gap-[24px] md:gap-[40px] w-full md:w-[calc(50%_-_12px)] lg:w-[408px]">
-              <p className="text-[16px] leading-[24px] w-full">If you are hiring and seeking for a creative team player to join your company, I would be glad to cooperate with you.</p>
+              <p className="text-[16px] leading-[24px] w-full">If you are hiring and seeking a creative team player to join your company, I’d be glad to collaborate with you.</p>
               <div className="flex gap-[16px] md:gap-[24px]">
                 {[
                   { label: "Read CV", href: "https://hello.cv/anastasiia-cherniak" },
