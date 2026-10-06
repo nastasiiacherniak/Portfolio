@@ -47,3 +47,10 @@ Cursor/
 /2026-05-31_170744.jpg
 /Paper fly.json
 /animation_noise.json
+/Section Recommendation_Mobile.jpg
+/Section Recommendations_Desktop.jpg
+
+# Source JPGs behind the .webp images, and duplicate logos (favicons live in public/)
+/images/JPG/
+/images/logo.png
+/images/logo256.png
