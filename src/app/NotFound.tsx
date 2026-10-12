@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router";
-import { gallery, manrope } from "./App";
+import { gallery, manrope, CustomCursor } from "./App";
 
 // Shown for any URL that doesn't match a route (Vercel rewrites every path to index.html).
 export default function NotFound() {
@@ -17,10 +17,12 @@ export default function NotFound() {
       <p className="mt-[8px] text-[14px] md:text-[16px] text-[#9a99a0]">The link may be broken or the page may have moved.</p>
       <Link
         to="/"
+        data-cursor="expand"
         className="mt-[40px] text-[14px] md:text-[16px] text-[#fefefe] uppercase transition-colors duration-300 hover:text-[#c39e7b]"
       >
         ← Back home
       </Link>
+      <CustomCursor />
     </main>
   );
 }
