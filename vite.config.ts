@@ -17,8 +17,8 @@ function figmaAssetResolver() {
 }
 
 export default defineConfig({
-  // Project is deployed to GitHub Pages under https://nastasiiacherniak.github.io/Portfolio/
-  base: '/Portfolio/',
+  // Deployed on Vercel at the domain root (SPA rewrites live in vercel.json).
+  base: '/',
   plugins: [
     figmaAssetResolver(),
     // The React and Tailwind plugins are both required for Make, even if

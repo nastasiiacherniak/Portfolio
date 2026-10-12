@@ -13,7 +13,7 @@
   const CaseStudyJukrassic = lazy(() => import("./app/CaseStudyJukrassic.tsx"));
 
   createRoot(document.getElementById("root")!).render(
-    <BrowserRouter basename="/Portfolio">
+    <BrowserRouter>
       {/* Dark fallback matches the site background, so a chunk fetch never flashes white. */}
       <Suspense fallback={<div style={{ minHeight: "100vh", background: "#33323b" }} />}>
         <Routes>
