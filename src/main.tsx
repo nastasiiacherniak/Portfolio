@@ -3,6 +3,7 @@
   import { lazy, Suspense } from "react";
   import { BrowserRouter, Routes, Route } from "react-router";
   import App from "./app/App.tsx";
+  import NotFound from "./app/NotFound.tsx";
   import "./styles/index.css";
 
   // Case studies are split into their own chunks so the homepage ("/") doesn't ship their
@@ -22,6 +23,7 @@
           <Route path="/work/rinesk" element={<CaseStudyRinesk />} />
           <Route path="/work/fincube" element={<CaseStudyFincube />} />
           <Route path="/work/jukrassic" element={<CaseStudyJukrassic />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
