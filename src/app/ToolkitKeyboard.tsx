@@ -24,7 +24,7 @@ const ICONS = {
   nanobanana: { viewBox: "0 0 32 32", body: "<g fill=\"none\"><path fill=\"#f3ad61\" d=\"M2 26.431c0-.73.592-1.321 1.322-1.321h.99a1.322 1.322 0 0 1 0 2.643h-.99c-.73 0-1.322-.592-1.322-1.322\"/><path fill=\"#f9c23c\" d=\"M19.783 18h9.435c.695 0 1.045-.876.55-1.392l-2.178-2.272a4.244 4.244 0 0 0-6.181 0l-2.179 2.272c-.492.514-.142 1.392.553 1.392m-15 0h9.434c.695 0 1.045-.878.553-1.392l-2.18-2.272a4.243 4.243 0 0 0-6.182 0L4.23 16.608c-.492.514-.142 1.392.553 1.392\"/><path fill=\"#feefc2\" d=\"M16.7 2.029c4.92-.708 7.96 11.897 5.745 16.99c-2.215 5.094-6.997 6.21-12.07 8.204a4.7 4.7 0 0 1-1.705.325c-1.924 0-2.97 1.582-3.7-.375c-.942-2.535.293-5.376 2.76-6.344c2.684-1.053 4.111-3.077 5.185-5.818c1.096-2.795 1.17-3.941 1.166-6.988c-.005-2.437-.165-5.594 2.619-5.994\"/><path fill=\"#fcd53f\" d=\"m22.445 19.02l-9.46-4.344c-1.086 2.498-3.053 4.411-5.54 5.39c-2.881 1.132-4.807 4.23-3.23 7.386c3.151 6.304 18.23-.066 18.23-8.433\"/><path fill=\"#f9c23c\" fill-rule=\"evenodd\" d=\"M18.24 16.482a.75.75 0 0 1 .486.942c-1.98 6.201-7.756 9.065-12.918 9.33a.75.75 0 0 1-.077-1.498c4.738-.243 9.83-2.852 11.566-8.288a.75.75 0 0 1 .943-.486\" clip-rule=\"evenodd\"/><path fill=\"#fff478\" d=\"m23.24 26.467l-10.197-11.78h9.004c2.126.107 3.794 1.91 3.794 4.097v7.552c0 1.33-1.197 1.736-2.6.131\"/></g>" },
   adobecc: { viewBox: "0 0 24 24", body: "<path fill=\"#DA1F26\" d=\"M14.782 3.153c-.231.02-.472.04-.703.07a8.453 8.453 0 0 0-2.832.834 8.951 8.951 0 0 0-2.46 1.777c-.03.04-.09.06-.141.05a7.44 7.44 0 0 0-1.496-.07 7.424 7.424 0 0 0-2.932.763c-1.768.884-3.013 2.26-3.736 4.108a7.089 7.089 0 0 0-.462 2.139c0 .05-.01.09-.02.13v.773c.02.201.05.392.07.593.1.813.332 1.596.703 2.33.824 1.646 2.089 2.851 3.786 3.594a7.127 7.127 0 0 0 2.45.593c.032 0 .06.004.086.01h8.576c.183-.017.362-.035.547-.06a8.344 8.344 0 0 0 2.811-.834 8.836 8.836 0 0 0 3.646-3.304 8.187 8.187 0 0 0 1.184-3.093c.05-.34.08-.692.121-1.034 0-.05.01-.09.02-.13v-.794c-.02-.23-.05-.452-.05-.662a8.345 8.345 0 0 0-.834-2.812 8.952 8.952 0 0 0-3.324-3.645 8.245 8.245 0 0 0-3.072-1.175c-.362-.06-.713-.09-1.075-.13-.05 0-.09-.01-.14-.02zm.369 1.693c2.126.005 3.93.826 5.395 2.455a6.93 6.93 0 0 1 1.616 3.323c.15.764.181 1.547.07 2.32-.19 1.346-.702 2.55-1.576 3.605a7.082 7.082 0 0 1-3.997 2.45 7.297 7.297 0 0 1-2.56.1c-1.095-.14-2.099-.501-3.003-1.154a5.2 5.2 0 0 1-.672-.573c-1.226-1.205-2.44-2.42-3.666-3.625-.301-.3-.321-.632-.18-.934a.822.822 0 0 1 .863-.472c.21.02.372.141.522.292 1.105 1.114 2.2 2.209 3.304 3.324a5.263 5.263 0 0 0 3.093 1.536c1.948.261 3.605-.341 4.92-1.798.713-.793 1.145-1.747 1.326-2.811.26-1.587-.11-3.013-1.095-4.268-.873-1.115-2.018-1.808-3.404-2.059-1.416-.25-2.751.02-3.966.794-.03.02-.1.03-.131.01a9.04 9.04 0 0 0-1.406-.854s-.01-.01-.02-.03a6.603 6.603 0 0 1 1.255-.823 6.646 6.646 0 0 1 2.641-.784 8.45 8.45 0 0 1 .67-.024zM7.546 7.509c1.455-.024 2.791.525 3.982 1.63.854.802 1.637 1.636 2.46 2.47.231.23.281.522.171.833-.11.311-.362.462-.683.512a.722.722 0 0 1-.632-.23c-.784-.784-1.567-1.557-2.34-2.35-.633-.653-1.386-1.025-2.27-1.186-1.958-.351-3.936.784-4.639 2.641-.904 2.36.522 5.031 2.982 5.594.482.11.995.11 1.497.1.14-.01.22.04.32.13.483.473.995.945 1.497 1.416.03.03.07.06.1.09-.06 0-.1.01-.14.01h-2.3a5.833 5.833 0 0 1-5.693-4.568c-.653-2.942 1.034-5.925 3.926-6.798a6.33 6.33 0 0 1 1.762-.294Z\"/>" },
   maze: { viewBox: "0 0 24 24", body: "<path fill=\"#1a1a1a\" d=\"M1.126 16.547c-1.5013-1.4881-1.5013-3.9009 0-5.389l4.0778-4.042c1.2692-1.258 3.205-1.4525 4.6803-.5836.4564.2687.4524.8852.077 1.2573-.3753.372-.988.34-1.4975.1923-.6524-.1891-1.386-.0287-1.9006.4813l-4.0777 4.0419a1.8935 1.8935 0 0 0 0 2.6945c.7506.744 1.9678.744 2.7184 0l8.1555-8.0836c1.5014-1.4882 3.9355-1.4882 5.437 0l4.0778 4.0418c1.5013 1.4881 1.5013 3.901 0 5.389-1.5014 1.4882-3.9356 1.4882-5.437 0l-1.3593-1.3472-1.699 1.684c-1.2692 1.258-3.205 1.4526-4.6804.5837-.4563-.2687-.4523-.8852-.077-1.2573.3754-.372.988-.34 1.4975-.1923.6524.1892 1.386.0287 1.9006-.4813l1.7476-1.7322c.724-.7175 1.8975-.7175 2.6214 0l1.4078 1.3954c.7507.744 1.9678.744 2.7186 0a1.8936 1.8936 0 0 0 0-2.6945l-4.0779-4.0419c-.7507-.744-1.9678-.744-2.7185 0L6.563 16.5471c-1.5014 1.4882-3.9356 1.4881-5.437 0\"/>" },
-  jira: { viewBox: "0 0 256 256", body: "<defs><linearGradient id=\"tk-jira-a\" x1=\"98.031%\" x2=\"58.888%\" y1=\".161%\" y2=\"40.766%\"><stop offset=\"18%\" stop-color=\"#0052cc\"/><stop offset=\"100%\" stop-color=\"#2684ff\"/></linearGradient><linearGradient id=\"tk-jira-b\" x1=\"100.665%\" x2=\"55.402%\" y1=\".455%\" y2=\"44.727%\"><stop offset=\"18%\" stop-color=\"#0052cc\"/><stop offset=\"100%\" stop-color=\"#2684ff\"/></linearGradient></defs><path fill=\"#2684ff\" d=\"M244.658 0H121.707a55.5 55.5 0 0 0 55.502 55.502h22.649V77.37c.02 30.625 24.841 55.447 55.466 55.467V10.666C255.324 4.777 250.55 0 244.658 0\"/><path fill=\"url(#tk-jira-a)\" d=\"M183.822 61.262H60.872c.019 30.625 24.84 55.447 55.466 55.467h22.649v21.938c.039 30.625 24.877 55.43 55.502 55.43V71.93c0-5.891-4.776-10.667-10.667-10.667\"/><path fill=\"url(#tk-jira-b)\" d=\"M122.951 122.489H0c0 30.653 24.85 55.502 55.502 55.502h22.72v21.867c.02 30.597 24.798 55.408 55.396 55.466V133.156c0-5.891-4.776-10.667-10.667-10.667\"/>" },
+  webflow: { viewBox: "0 0 24 24", body: "<path fill=\"#146EF5\" d=\"m24 4.515-7.658 14.97H9.149l3.205-6.204h-.144C9.566 16.713 5.621 18.973 0 19.485v-6.118s3.596-.213 5.71-2.435H0V4.515h6.417v5.278l.144-.001 2.622-5.277h4.854v5.244h.144l2.72-5.244H24Z\"/>" },
 };
 
 const TOOLS: Tool[] = [
@@ -35,7 +35,7 @@ const TOOLS: Tool[] = [
   { id: "nanobanana", name: "Nano Banana", role: "AI image generation" },
   { id: "adobecc", name: "Adobe CC", role: "Visuals & motion" },
   { id: "maze", name: "Maze", role: "Usability testing" },
-  { id: "jira", name: "Jira", role: "Sprints & handoff" },
+  { id: "webflow", name: "Webflow", role: "Website building" },
 ];
 const ENTER = TOOLS.length; // index of the Enter key
 const COUNT = TOOLS.length + 1;
@@ -44,6 +44,7 @@ export default function ToolkitKeyboard({ manrope }: { manrope: React.CSSPropert
   const keyRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const padRef = useRef<HTMLDivElement>(null);
   const [focusIdx, setFocusIdx] = useState(0);
+  const [labelIdx, setLabelIdx] = useState(-1); // key named on the engraving; -1 = "Current toolkit"
   const [still] = useState(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   const st = useRef({
     d: new Float32Array(COUNT), // depth 0 (up) … 1 (bottomed out)
@@ -104,6 +105,7 @@ export default function ToolkitKeyboard({ manrope }: { manrope: React.CSSPropert
   const tap = (i: number) => {
     const s = st.current;
     s.taps[i] = performance.now() + 140;
+    setLabelIdx(i);
     if (i === ENTER) {
       // Enter: a typing wave across the board.
       [0, 1, 2, 3, 7, 6, 5, 4].forEach((k, n) => {
@@ -117,6 +119,8 @@ export default function ToolkitKeyboard({ manrope }: { manrope: React.CSSPropert
     const s = st.current;
     if (s.hover === i) return;
     s.hover = i;
+    // Gaps between keys don't reset the engraving, so it doesn't flicker between neighbours.
+    if (i >= 0) setLabelIdx(i);
     s.kick();
   };
 
@@ -151,7 +155,8 @@ export default function ToolkitKeyboard({ manrope }: { manrope: React.CSSPropert
             const key = (e.target as HTMLElement).closest("button");
             hover(key ? keyRefs.current.indexOf(key as HTMLButtonElement) : -1);
           }}
-          onPointerLeave={() => hover(-1)}
+          onPointerLeave={() => { hover(-1); setLabelIdx(-1); }}
+          onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setLabelIdx(-1); }}
           className="toolkit-pad pointer-events-auto relative mx-auto w-[78cqw] rounded-[1.6cqw] px-[3cqw] pt-[3cqw] pb-[2.2cqw]"
         >
           {/* Case thickness: a stack of layers below the top face. */}
@@ -171,7 +176,7 @@ export default function ToolkitKeyboard({ manrope }: { manrope: React.CSSPropert
                 onPointerUp={() => { st.current.held = -1; tap(i); }}
                 onPointerCancel={() => { st.current.held = -1; st.current.kick(); }}
                 onKeyDown={(e) => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); tap(i); } }}
-                onFocus={() => setFocusIdx(i)}
+                onFocus={() => { setFocusIdx(i); setLabelIdx(i); }}
                 className="toolkit-key aspect-square"
               >
                 <span className="toolkit-cap">
@@ -189,7 +194,7 @@ export default function ToolkitKeyboard({ manrope }: { manrope: React.CSSPropert
               onPointerUp={() => { st.current.held = -1; tap(ENTER); }}
               onPointerCancel={() => { st.current.held = -1; st.current.kick(); }}
               onKeyDown={(e) => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); tap(ENTER); } }}
-              onFocus={() => setFocusIdx(ENTER)}
+              onFocus={() => { setFocusIdx(ENTER); setLabelIdx(ENTER); }}
               className="toolkit-key toolkit-key--enter col-span-4 h-[13cqw]"
             >
               <span className="toolkit-cap justify-center gap-[1.2cqw] text-[3cqw] tracking-[0.04em]">
@@ -202,9 +207,9 @@ export default function ToolkitKeyboard({ manrope }: { manrope: React.CSSPropert
               </span>
             </button>
           </div>
-          {/* Engraving and status light along the bottom edge of the base. */}
+          {/* Engraving and status light along the bottom edge of the base; the engraving names the key in use. */}
           <div aria-hidden="true" className="flex items-center justify-between px-[1.2cqw] pt-[1.8cqw] text-[2cqw] leading-none tracking-[0.28em] text-[#8e8d96]">
-            <span>TOOLKIT '26</span>
+            <span className={`uppercase transition-colors duration-300 ${labelIdx < 0 ? "" : "text-[#c39e7b]"}`}>{labelIdx < 0 ? "Current toolkit" : labelIdx === ENTER ? "Enter" : TOOLS[labelIdx].name}</span>
             <span className="toolkit-led" />
           </div>
         </div>
