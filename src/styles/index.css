@@ -63,3 +63,143 @@ html {
   transform: rotate(-45deg);
   transition: bottom 0.3s ease-out, transform 0.3s ease-out 0.15s;
 }
+
+/* Toolkit keyboard (Contact section). Sizes are container-query units of its square stage.
+   A graphite aluminium pad floats at an angle (tilted back and turned); its drift comes from
+   <Float> in JS. Each key's depth --d (0 up … 1 bottomed out) is driven from JS; the cap's raised side
+   is a solid box-shadow that shortens as the key goes down. */
+.toolkit-stage {
+  perspective: 150cqw;
+  padding: 6cqw 0 4cqw;
+}
+.toolkit-pad {
+  --glow: 0;
+  --tilt: rotateX(28deg) rotateZ(16deg);
+  transform-style: preserve-3d;
+  transform: var(--tilt);
+  /* graphite anodised aluminium: soft diagonal reflections are part of the material */
+  background:
+    radial-gradient(90% 70% at 15% 8%, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0) 60%),
+    linear-gradient(118deg,
+      #3d3e44 0%, #55565d 18%, #44454b 34%,
+      #63646b 50%, #46474d 64%, #575860 80%, #3b3c42 100%);
+  box-shadow:
+    inset 0 0.3cqw 0 rgba(255, 255, 255, 0.22),
+    inset 0.25cqw 0 0 rgba(255, 255, 255, 0.08),
+    inset 0 -0.4cqw 0.6cqw rgba(0, 0, 0, 0.35);
+}
+/* Thickness: layers stacked under the top face, each a little darker, so the machined edge
+   reads as metal from any angle. */
+.toolkit-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  transform: translateZ(calc(var(--z) * -0.45cqw));
+  background: linear-gradient(118deg, #4a4b51, #2f3035 55%, #44454b);
+  filter: brightness(calc(1 - var(--z) * 0.022));
+}
+.toolkit-led {
+  width: 1.1cqw;
+  height: 1.1cqw;
+  border-radius: 50%;
+  background: #c39e7b;
+  opacity: calc(0.55 + var(--glow) * 0.45);
+  box-shadow:
+    inset 0 0 0 0.12cqw rgba(0, 0, 0, 0.15),
+    0 0 calc(0.6cqw + var(--glow) * 2.4cqw) rgba(195, 158, 123, calc(0.35 + var(--glow) * 0.5));
+}
+/* The pocket milled into the base for the keys: shadowed under its top edge, lit along its lip. */
+.toolkit-plate {
+  border-radius: 1cqw;
+  background: linear-gradient(118deg,
+    #3d3e44 0%, #55565d 18%, #44454b 34%,
+    #63646b 50%, #46474d 64%, #575860 80%, #3b3c42 100%);
+  box-shadow:
+    inset 0 0.8cqw 1.4cqw rgba(0, 0, 0, 0.45),
+    inset 0 0.15cqw 0 rgba(0, 0, 0, 0.5),
+    inset 0 -0.2cqw 0 rgba(255, 255, 255, 0.06),
+    0 0.3cqw 0 rgba(255, 255, 255, 0.16),
+    0 -0.15cqw 0 rgba(0, 0, 0, 0.3);
+}
+.toolkit-key {
+  --d: 0;
+  --lift: 4.4cqw;
+  --top: linear-gradient(180deg, #faf8f4 0%, #e9e5de 100%);
+  --side: #b3ab9f;
+  --ink: #33323b;
+  position: relative;
+  display: block;
+  padding: 0;
+  border: 0;
+  border-radius: 0.9cqw;
+  background: rgba(0, 0, 0, 0.35); /* the socket the key sits in */
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+/* The cap is drawn raised above its socket; stretch the pointer area up to match it. */
+.toolkit-key::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: var(--lift);
+}
+.toolkit-key--enter {
+  --top: linear-gradient(180deg, #d9b99b 0%, #bd9671 100%);
+  --side: #8a6a4e;
+}
+.toolkit-cap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+  color: var(--ink);
+  background: var(--top);
+  transform: translateY(calc((var(--d) - 1) * var(--lift)));
+  /* a small chamfer round the top edge: lit along the top and left, shaded along the bottom and right */
+  box-shadow:
+    inset 0 0.35cqw 0 rgba(255, 255, 255, 0.75),
+    inset 0.3cqw 0 0 rgba(255, 255, 255, 0.4),
+    inset -0.3cqw 0 0 rgba(0, 0, 0, 0.07),
+    inset 0 -0.35cqw 0 rgba(0, 0, 0, 0.12),
+    0 calc((1 - var(--d)) * var(--lift)) 0 var(--side),
+    0 calc((1 - var(--d)) * var(--lift) + 0.5cqw) calc(1.6cqw - var(--d) * 0.8cqw) rgba(20, 22, 30, 0.4);
+}
+/* A shallow round dimple in each keycap, as in the reference: shaded under its upper rim, lit
+   along its lower rim. The wide Enter key gets the same dimple stretched into a pill. */
+.toolkit-cap::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 86%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 70%, rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.025) 75%);
+  box-shadow:
+    inset 0 0.3cqw 0.5cqw rgba(0, 0, 0, 0.07),
+    inset 0 -0.2cqw 0.3cqw rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+}
+.toolkit-key--enter .toolkit-cap::before {
+  width: 96%;
+  height: 84%;
+  aspect-ratio: auto;
+  border-radius: 999px;
+  background: radial-gradient(70% 90% at 50% 70%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.025) 80%);
+  box-shadow:
+    inset 0 0.3cqw 0.5cqw rgba(60, 40, 20, 0.1),
+    inset 0 -0.2cqw 0.3cqw rgba(255, 255, 255, 0.25);
+}
+.toolkit-cap > * {
+  position: relative;
+}
+.toolkit-key:focus-visible .toolkit-cap {
+  outline: 0.45cqw solid #c39e7b;
+  outline-offset: 0.5cqw;
+}

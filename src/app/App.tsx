@@ -1,9 +1,9 @@
-import { useState, useEffect, useLayoutEffect, useRef, forwardRef, lazy, Suspense } from "react";
+import { useState, useEffect, useLayoutEffect, useRef, forwardRef } from "react";
 import { useNavigate } from "react-router";
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useMotionTemplate, useSpring, type MotionValue } from "motion/react";
 import Float from "./components/fancy/float";
 import { TextAnimate } from "./components/magicui/text-animate";
-const PaperFly = lazy(() => import("./PaperFly"));
+import ToolkitKeyboard from "./ToolkitKeyboard";
 
 import imgHero from "../../images/Hero.webp";
 import imgRinesk from "../../images/Rinesk_min.webp";
@@ -736,21 +736,20 @@ function Recommendation() {
 
 export function Contact() {
   return (
-    <section id="contact" className="w-full" style={manrope}>
+    <section id="contact" className="w-full overflow-x-clip" style={manrope}>
       <div className="max-w-[1440px] mx-auto px-4 md:px-[40px] lg:px-[84px] pt-[80px] pb-[24px] md:py-[24px]">
         <div className="flex flex-col md:pt-[120px] pb-0 gap-[40px] md:gap-[80px]">
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-[40px]">
             <ScrollRevealText
               className="text-[#fefefe] text-[24px] md:text-[36px] lg:text-[44px] leading-[32px] md:leading-[46px] lg:leading-[56px] font-normal min-w-0 md:flex-1 lg:max-w-[840px]"
-              text="If you liked this artwork, please contact me in any convenient way and we can discuss ideas for your project."
+              text="My toolkit is ready and the next key is yours. Get in touch any way you like and we’ll shape your project."
               offset={["start 0.9", "end 0.65"]}
             />
-            <Reveal delay={0.1} className="shrink-0">
-              {/* Keeps the source file's 1:1 (600×600) proportions */}
-              <div className="w-[200px] md:w-[280px] lg:w-[360px] aspect-square shrink-0">
-                <Suspense fallback={null}>
-                  <PaperFly />
-                </Suspense>
+            {/* Square stage for the interactive toolkit keyboard: pulled up on every screen, and
+                from md also nudged right, into the page margin. */}
+            <Reveal delay={0.1} className="shrink-0 -mt-[32px] md:-mt-[48px] lg:-mt-[64px] md:-mr-[24px] lg:-mr-[48px]">
+              <div className="w-[240px] md:w-[280px] lg:w-[360px] aspect-square shrink-0">
+                <ToolkitKeyboard manrope={manrope} />
               </div>
             </Reveal>
           </div>
