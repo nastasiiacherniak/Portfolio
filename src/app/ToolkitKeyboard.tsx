@@ -152,16 +152,12 @@ export default function ToolkitKeyboard({ manrope }: { manrope: React.CSSPropert
             hover(key ? keyRefs.current.indexOf(key as HTMLButtonElement) : -1);
           }}
           onPointerLeave={() => hover(-1)}
-          className="toolkit-pad pointer-events-auto relative mx-auto w-[78cqw] rounded-[1.6cqw] px-[3cqw] pt-[2.2cqw] pb-[3cqw]"
+          className="toolkit-pad pointer-events-auto relative mx-auto w-[78cqw] rounded-[1.6cqw] px-[3cqw] pt-[3cqw] pb-[2.2cqw]"
         >
           {/* Case thickness: a stack of layers below the top face. */}
           {Array.from({ length: 16 }, (_, k) => (
             <span key={k} aria-hidden="true" className="toolkit-layer" style={{ "--z": k + 1 } as React.CSSProperties} />
           ))}
-          <div aria-hidden="true" className="flex items-center justify-between px-[1.2cqw] pb-[1.6cqw] text-[2cqw] leading-none tracking-[0.28em] text-[#8e8d96]">
-            <span>TOOLKIT '26</span>
-            <span className="toolkit-led" />
-          </div>
           <div className="toolkit-plate grid grid-cols-4 gap-[2cqw] p-[2cqw]">
             {TOOLS.map((t, i) => (
               <button
@@ -205,6 +201,11 @@ export default function ToolkitKeyboard({ manrope }: { manrope: React.CSSPropert
                 </svg>
               </span>
             </button>
+          </div>
+          {/* Engraving and status light along the bottom edge of the base. */}
+          <div aria-hidden="true" className="flex items-center justify-between px-[1.2cqw] pt-[1.8cqw] text-[2cqw] leading-none tracking-[0.28em] text-[#8e8d96]">
+            <span>TOOLKIT '26</span>
+            <span className="toolkit-led" />
           </div>
         </div>
         </Drift>
