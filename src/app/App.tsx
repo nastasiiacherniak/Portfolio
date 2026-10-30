@@ -737,12 +737,12 @@ function Recommendation() {
 export function Contact() {
   const reduceMotion = useReducedMotion();
   // The keyboard grows with the scroll: as its top enters the viewport it is small, and it reaches
-  // full size when its top is 60% down the screen (reachable even on tall screens, where the page
-  // runs out before the keyboard can climb higher). Scrolling down it starts from 15%; scrolling back
+  // full size when its top is 60% down the screen — or at the bottom of the page, on screens where
+  // it can't climb that far. Scrolling down it starts from 15%; scrolling back
   // up it shrinks further, to 10% (the switch between the two is sprung, so it never jumps).
   // A light spring smooths out wheel steps.
   const keyboardRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: keyboardIn } = useScroll({ target: keyboardRef, offset: ["start end", "start 0.6"] });
+  const keyboardIn = useReachableScroll(keyboardRef, ["start end", "start 0.6"]);
   const keyboardEase = useSpring(keyboardIn, { stiffness: 140, damping: 30, mass: 0.4 });
   const keyboardMin = useMotionValue(0.15);
   const keyboardMinEase = useSpring(keyboardMin, { stiffness: 120, damping: 30 });
@@ -756,9 +756,7 @@ export function Contact() {
   // True while the keyboard is at full size; each time it gets there again, the keys type a hello.
   const [keyboardFull, setKeyboardFull] = useState(false);
   useMotionValueEvent(keyboardEase, "change", (v) => {
-    // At the very bottom of the page it counts as full even if it can't quite get there.
-    const atBottom = window.scrollY >= document.documentElement.scrollHeight - window.innerHeight - 2;
-    if (v > 0.97 || (atBottom && v > 0.8)) setKeyboardFull(true);
+    if (v > 0.97) setKeyboardFull(true);
     else if (v < 0.5) setKeyboardFull(false);
   });
   return (
@@ -915,9 +913,46 @@ function RevealWord({ progress, range, word }: { progress: MotionValue<number>; 
 }
 
 // Read-along reveal: words sharpen from dim+blurred to full opacity as the paragraph scrolls through view.
-export function ScrollRevealText({ text, className, style, offset = ["start 0.9", "end 0.45"] }: { text: string; className?: string; style?: React.CSSProperties; offset?: any }) {
+// Scroll progress (0 → 1) of an element between two offsets, like motion's useScroll — e.g.
+// ["start 0.9", "end 0.45"] = from the element's top at 90% of the viewport to its bottom at 45%.
+// If the page ends before the end offset can be reached (short viewports, content near the
+// bottom), progress finishes exactly at the bottom of the page instead, so it always completes.
+// Positions come from layout (offsetTop), so the element's own transforms don't skew them.
+export function useReachableScroll(ref: React.RefObject<HTMLElement | null>, offset: [string, string]) {
+  const progress = useMotionValue(0);
+  useEffect(() => {
+    const point = (s: string) => {
+      const [edge, at] = s.split(" ");
+      const vp = at === "end" ? 1 : at === "start" ? 0 : at === "center" ? 0.5 : parseFloat(at);
+      return { edge, vp };
+    };
+    const [a, b] = [point(offset[0]), point(offset[1])];
+    const update = () => {
+      const el = ref.current;
+      if (!el) return;
+      let top = 0;
+      for (let e: HTMLElement | null = el; e; e = e.offsetParent as HTMLElement | null) top += e.offsetTop;
+      const edgeY = (edge: string) => (edge === "end" ? top + el.offsetHeight : edge === "center" ? top + el.offsetHeight / 2 : top);
+      const H = window.innerHeight;
+      const maxScroll = document.documentElement.scrollHeight - H;
+      const s0 = edgeY(a.edge) - a.vp * H;
+      let s1 = Math.min(edgeY(b.edge) - b.vp * H, maxScroll - 1);
+      if (s1 <= s0) s1 = s0 + 1;
+      progress.set(Math.min(1, Math.max(0, (window.scrollY - s0) / (s1 - s0))));
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    const ro = new ResizeObserver(update);
+    ro.observe(document.documentElement);
+    return () => { window.removeEventListener("scroll", update); window.removeEventListener("resize", update); ro.disconnect(); };
+  }, [ref, progress, offset[0], offset[1]]);
+  return progress;
+}
+
+export function ScrollRevealText({ text, className, style, offset = ["start 0.9", "end 0.45"] }: { text: string; className?: string; style?: React.CSSProperties; offset?: [string, string] }) {
   const ref = useRef<HTMLParagraphElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset });
+  const scrollYProgress = useReachableScroll(ref, offset);
   const words = text.split(" ");
   return (
     <p ref={ref} className={className} style={style}>
