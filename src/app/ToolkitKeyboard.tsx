@@ -15,7 +15,8 @@ import Float from "./components/fancy/float";
 
 type Tool = { id: keyof typeof ICONS; name: string; role: string };
 
-// Brand marks: Simple Icons (CC0), Iconify "logos" (CC0) and Fluent Emoji (MIT) for the banana.
+// Brand marks: Simple Icons (CC0), Iconify "logos" (CC0) and Fluent Emoji (MIT) for the banana;
+// the Kling AI mark is traced from its current logo.
 const ICONS = {
   figma: { viewBox: "0 0 256 384", body: "<path fill=\"#0acf83\" d=\"M64 384c35.328 0 64-28.672 64-64v-64H64c-35.328 0-64 28.672-64 64s28.672 64 64 64\"/><path fill=\"#a259ff\" d=\"M0 192c0-35.328 28.672-64 64-64h64v128H64c-35.328 0-64-28.672-64-64\"/><path fill=\"#f24e1e\" d=\"M0 64C0 28.672 28.672 0 64 0h64v128H64C28.672 128 0 99.328 0 64\"/><path fill=\"#ff7262\" d=\"M128 0h64c35.328 0 64 28.672 64 64s-28.672 64-64 64h-64z\"/><path fill=\"#1abcfe\" d=\"M256 192c0 35.328-28.672 64-64 64s-64-28.672-64-64s28.672-64 64-64s64 28.672 64 64\"/>" },
   claude: { viewBox: "0 0 256 257", body: "<path fill=\"#d97757\" d=\"m50.228 170.321l50.357-28.257l.843-2.463l-.843-1.361h-2.462l-8.426-.518l-28.775-.778l-24.952-1.037l-24.175-1.296l-6.092-1.297L0 125.796l.583-3.759l5.12-3.434l7.324.648l16.202 1.101l24.304 1.685l17.629 1.037l26.118 2.722h4.148l.583-1.685l-1.426-1.037l-1.101-1.037l-25.147-17.045l-27.22-18.017l-14.258-10.37l-7.713-5.25l-3.888-4.925l-1.685-10.758l7-7.713l9.397.649l2.398.648l9.527 7.323l20.35 15.75L94.817 91.9l3.889 3.24l1.555-1.102l.195-.777l-1.75-2.917l-14.453-26.118l-15.425-26.572l-6.87-11.018l-1.814-6.61c-.648-2.723-1.102-4.991-1.102-7.778l7.972-10.823L71.42 0l10.63 1.426l4.472 3.888l6.61 15.101l10.694 23.786l16.591 32.34l4.861 9.592l2.592 8.879l.973 2.722h1.685v-1.556l1.36-18.211l2.528-22.36l2.463-28.776l.843-8.1l4.018-9.722l7.971-5.25l6.222 2.981l5.12 7.324l-.713 4.73l-3.046 19.768l-5.962 30.98l-3.889 20.739h2.268l2.593-2.593l10.499-13.934l17.628-22.036l7.778-8.749l9.073-9.657l5.833-4.601h11.018l8.1 12.055l-3.628 12.443l-11.342 14.388l-9.398 12.184l-13.48 18.147l-8.426 14.518l.778 1.166l2.01-.194l30.46-6.481l16.462-2.982l19.637-3.37l8.88 4.148l.971 4.213l-3.5 8.62l-20.998 5.184l-24.628 4.926l-36.682 8.685l-.454.324l.519.648l16.526 1.555l7.065.389h17.304l32.21 2.398l8.426 5.574l5.055 6.805l-.843 5.184l-12.962 6.611l-17.498-4.148l-40.83-9.721l-14-3.5h-1.944v1.167l11.666 11.406l21.387 19.314l26.767 24.887l1.36 6.157l-3.434 4.86l-3.63-.518l-23.526-17.693l-9.073-7.972l-20.545-17.304h-1.36v1.814l4.73 6.935l25.017 37.59l1.296 11.536l-1.814 3.76l-6.481 2.268l-7.13-1.297l-14.647-20.544l-15.1-23.138l-12.185-20.739l-1.49.843l-7.194 77.448l-3.37 3.953l-7.778 2.981l-6.48-4.925l-3.436-7.972l3.435-15.749l4.148-20.544l3.37-16.333l3.046-20.285l1.815-6.74l-.13-.454l-1.49.194l-15.295 20.999l-23.267 31.433l-18.406 19.702l-4.407 1.75l-7.648-3.954l.713-7.064l4.277-6.286l25.47-32.405l15.36-20.092l9.917-11.6l-.065-1.686h-.583L44.07 198.125l-12.055 1.555l-5.185-4.86l.648-7.972l2.463-2.593l20.35-13.999z\"/>" },
@@ -23,24 +24,25 @@ const ICONS = {
   gemini: { viewBox: "0 0 24 24", body: "<defs><linearGradient id=\"tk-gemini\" x1=\"0\" y1=\"24\" x2=\"24\" y2=\"0\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#1c7dff\"/><stop offset=\".52\" stop-color=\"#9168c0\"/><stop offset=\"1\" stop-color=\"#d96570\"/></linearGradient></defs><path fill=\"url(#tk-gemini)\" d=\"M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81\"/>" },
   nanobanana: { viewBox: "0 0 32 32", body: "<g fill=\"none\"><path fill=\"#f3ad61\" d=\"M2 26.431c0-.73.592-1.321 1.322-1.321h.99a1.322 1.322 0 0 1 0 2.643h-.99c-.73 0-1.322-.592-1.322-1.322\"/><path fill=\"#f9c23c\" d=\"M19.783 18h9.435c.695 0 1.045-.876.55-1.392l-2.178-2.272a4.244 4.244 0 0 0-6.181 0l-2.179 2.272c-.492.514-.142 1.392.553 1.392m-15 0h9.434c.695 0 1.045-.878.553-1.392l-2.18-2.272a4.243 4.243 0 0 0-6.182 0L4.23 16.608c-.492.514-.142 1.392.553 1.392\"/><path fill=\"#feefc2\" d=\"M16.7 2.029c4.92-.708 7.96 11.897 5.745 16.99c-2.215 5.094-6.997 6.21-12.07 8.204a4.7 4.7 0 0 1-1.705.325c-1.924 0-2.97 1.582-3.7-.375c-.942-2.535.293-5.376 2.76-6.344c2.684-1.053 4.111-3.077 5.185-5.818c1.096-2.795 1.17-3.941 1.166-6.988c-.005-2.437-.165-5.594 2.619-5.994\"/><path fill=\"#fcd53f\" d=\"m22.445 19.02l-9.46-4.344c-1.086 2.498-3.053 4.411-5.54 5.39c-2.881 1.132-4.807 4.23-3.23 7.386c3.151 6.304 18.23-.066 18.23-8.433\"/><path fill=\"#f9c23c\" fill-rule=\"evenodd\" d=\"M18.24 16.482a.75.75 0 0 1 .486.942c-1.98 6.201-7.756 9.065-12.918 9.33a.75.75 0 0 1-.077-1.498c4.738-.243 9.83-2.852 11.566-8.288a.75.75 0 0 1 .943-.486\" clip-rule=\"evenodd\"/><path fill=\"#fff478\" d=\"m23.24 26.467l-10.197-11.78h9.004c2.126.107 3.794 1.91 3.794 4.097v7.552c0 1.33-1.197 1.736-2.6.131\"/></g>" },
   adobecc: { viewBox: "0 0 24 24", body: "<path fill=\"#DA1F26\" d=\"M14.782 3.153c-.231.02-.472.04-.703.07a8.453 8.453 0 0 0-2.832.834 8.951 8.951 0 0 0-2.46 1.777c-.03.04-.09.06-.141.05a7.44 7.44 0 0 0-1.496-.07 7.424 7.424 0 0 0-2.932.763c-1.768.884-3.013 2.26-3.736 4.108a7.089 7.089 0 0 0-.462 2.139c0 .05-.01.09-.02.13v.773c.02.201.05.392.07.593.1.813.332 1.596.703 2.33.824 1.646 2.089 2.851 3.786 3.594a7.127 7.127 0 0 0 2.45.593c.032 0 .06.004.086.01h8.576c.183-.017.362-.035.547-.06a8.344 8.344 0 0 0 2.811-.834 8.836 8.836 0 0 0 3.646-3.304 8.187 8.187 0 0 0 1.184-3.093c.05-.34.08-.692.121-1.034 0-.05.01-.09.02-.13v-.794c-.02-.23-.05-.452-.05-.662a8.345 8.345 0 0 0-.834-2.812 8.952 8.952 0 0 0-3.324-3.645 8.245 8.245 0 0 0-3.072-1.175c-.362-.06-.713-.09-1.075-.13-.05 0-.09-.01-.14-.02zm.369 1.693c2.126.005 3.93.826 5.395 2.455a6.93 6.93 0 0 1 1.616 3.323c.15.764.181 1.547.07 2.32-.19 1.346-.702 2.55-1.576 3.605a7.082 7.082 0 0 1-3.997 2.45 7.297 7.297 0 0 1-2.56.1c-1.095-.14-2.099-.501-3.003-1.154a5.2 5.2 0 0 1-.672-.573c-1.226-1.205-2.44-2.42-3.666-3.625-.301-.3-.321-.632-.18-.934a.822.822 0 0 1 .863-.472c.21.02.372.141.522.292 1.105 1.114 2.2 2.209 3.304 3.324a5.263 5.263 0 0 0 3.093 1.536c1.948.261 3.605-.341 4.92-1.798.713-.793 1.145-1.747 1.326-2.811.26-1.587-.11-3.013-1.095-4.268-.873-1.115-2.018-1.808-3.404-2.059-1.416-.25-2.751.02-3.966.794-.03.02-.1.03-.131.01a9.04 9.04 0 0 0-1.406-.854s-.01-.01-.02-.03a6.603 6.603 0 0 1 1.255-.823 6.646 6.646 0 0 1 2.641-.784 8.45 8.45 0 0 1 .67-.024zM7.546 7.509c1.455-.024 2.791.525 3.982 1.63.854.802 1.637 1.636 2.46 2.47.231.23.281.522.171.833-.11.311-.362.462-.683.512a.722.722 0 0 1-.632-.23c-.784-.784-1.567-1.557-2.34-2.35-.633-.653-1.386-1.025-2.27-1.186-1.958-.351-3.936.784-4.639 2.641-.904 2.36.522 5.031 2.982 5.594.482.11.995.11 1.497.1.14-.01.22.04.32.13.483.473.995.945 1.497 1.416.03.03.07.06.1.09-.06 0-.1.01-.14.01h-2.3a5.833 5.833 0 0 1-5.693-4.568c-.653-2.942 1.034-5.925 3.926-6.798a6.33 6.33 0 0 1 1.762-.294Z\"/>" },
-  maze: { viewBox: "0 0 24 24", body: "<path fill=\"#1a1a1a\" d=\"M1.126 16.547c-1.5013-1.4881-1.5013-3.9009 0-5.389l4.0778-4.042c1.2692-1.258 3.205-1.4525 4.6803-.5836.4564.2687.4524.8852.077 1.2573-.3753.372-.988.34-1.4975.1923-.6524-.1891-1.386-.0287-1.9006.4813l-4.0777 4.0419a1.8935 1.8935 0 0 0 0 2.6945c.7506.744 1.9678.744 2.7184 0l8.1555-8.0836c1.5014-1.4882 3.9355-1.4882 5.437 0l4.0778 4.0418c1.5013 1.4881 1.5013 3.901 0 5.389-1.5014 1.4882-3.9356 1.4882-5.437 0l-1.3593-1.3472-1.699 1.684c-1.2692 1.258-3.205 1.4526-4.6804.5837-.4563-.2687-.4523-.8852-.077-1.2573.3754-.372.988-.34 1.4975-.1923.6524.1892 1.386.0287 1.9006-.4813l1.7476-1.7322c.724-.7175 1.8975-.7175 2.6214 0l1.4078 1.3954c.7507.744 1.9678.744 2.7186 0a1.8936 1.8936 0 0 0 0-2.6945l-4.0779-4.0419c-.7507-.744-1.9678-.744-2.7185 0L6.563 16.5471c-1.5014 1.4882-3.9356 1.4881-5.437 0\"/>" },
+  kling: { viewBox: "0 0 24 24", body: "<g transform=\"translate(12 12) scale(0.8) translate(-12 -12)\"><path fill=\"#1a1a1a\" fill-rule=\"evenodd\" stroke=\"#1a1a1a\" stroke-width=\"0.6\" stroke-linejoin=\"round\" d=\"M10.5 0.05L11.05 0L13.28 0.02L14.63 0.24L15.86 0.58L17.2 1.13L18.43 1.81L19.55 2.61L20.67 3.65L21.15 4.41L21.38 5.2L21.44 5.98L21.38 6.99L21.16 7.99L20.79 9.11L20.23 10.34L19.39 11.8L19.4 11.91L23.85 16.38L23.25 17.5L22.25 18.95L21.22 20.1L19.66 21.44L18.09 22.43L16.86 23.01L15.19 23.57L13.4 23.92L11.94 24L10.49 23.91L9.26 23.69L8.03 23.32L6.69 22.77L5.68 22.22L4.45 21.34L3.33 20.29L2.84 19.51L2.62 18.73L2.56 17.95L2.62 16.94L2.84 15.93L3.32 14.59L3.96 13.25L4.62 12.13L4.59 12.02L0.2 7.66L0.15 7.55L1.04 5.98L1.95 4.75L3.33 3.33L4.5 2.4L5.79 1.59L7.47 0.81L8.92 0.35ZM11.08 1.17L12.73 1.15L14.29 1.37L15.19 1.6L16.08 1.92L17.47 2.62L17.31 2.71L15.97 3.02L14.63 3.51L13.28 4.18L11.72 5.15L10.49 6.05L9.11 7.21L7.69 8.59L6.63 9.78L5.57 11.16L5.46 11.2L1.65 7.43L1.61 7.32L1.65 7.24L2.4 6.09L3.44 4.86L4.56 3.82L5.68 3.02L6.8 2.38L8.14 1.82L9.71 1.38ZM17.16 3.52L18.32 3.49L19.21 3.72L19.88 4.21L20.13 4.53L20.35 4.97L20.49 5.64L20.47 6.76L20.26 7.77L19.91 8.78L19.34 10.01L18.54 11.36L18.48 11.24L18.66 10.01L18.61 9L18.36 7.99L17.91 7.1L17.42 6.52L16.53 5.85L15.63 5.5L14.96 5.36L13.96 5.32L12.73 5.49L12.62 5.42L13.62 4.82L14.96 4.16L16.19 3.72ZM13.51 6.09L14.74 6.07L15.63 6.27L16.53 6.73L17.2 7.38L17.66 8.22L17.91 9.22L17.91 10.23L17.78 11.12L17.46 12.13L16.79 13.47L15.99 14.59L15.07 15.56L14.18 16.3L12.73 17.19L11.83 17.55L10.6 17.85L9.26 17.88L8.59 17.76L7.71 17.39L7 16.83L6.65 16.38L6.41 15.93L6.1 14.93L6.08 13.7L6.21 12.8L6.53 11.8L7.21 10.45L8.11 9.22L8.98 8.33L10.15 7.4L11.16 6.83L12.17 6.4ZM5.39 12.69L5.46 12.59L5.52 12.69L5.41 13.25L5.34 14.14L5.39 14.93L5.52 15.6L5.87 16.49L6.53 17.39L7.47 18.09L7.92 18.3L8.59 18.51L9.71 18.64L10.71 18.56L11.27 18.45L11.39 18.51L10.6 18.99L9.26 19.68L8.25 20.09L7.47 20.31L6.8 20.43L6.02 20.48L5.34 20.41L4.79 20.22L4.23 19.85L3.85 19.4L3.64 18.95L3.5 18.17L3.52 17.28L3.64 16.6L3.89 15.71L4.19 14.93L4.85 13.58ZM18.45 12.8L18.54 12.75L18.65 12.83L22.39 16.6L21.85 17.5L21.27 18.28L20.25 19.4L19.21 20.3L17.87 21.2L16.75 21.78L15.3 22.32L13.84 22.66L12.28 22.81L10.6 22.72L9.59 22.56L8.14 22.12L7.13 21.67L6.53 21.3L7.8 21.01L9.15 20.54L10.94 19.65L12.5 18.65L14.4 17.18L15.64 16.04L17.22 14.37Z\"/></g>" },
   webflow: { viewBox: "0 0 24 24", body: "<path fill=\"#146EF5\" d=\"m24 4.515-7.658 14.97H9.149l3.205-6.204h-.144C9.566 16.713 5.621 18.973 0 19.485v-6.118s3.596-.213 5.71-2.435H0V4.515h6.417v5.278l.144-.001 2.622-5.277h4.854v5.244h.144l2.72-5.244H24Z\"/>" },
 };
 
 const TOOLS: Tool[] = [
   { id: "figma", name: "Figma", role: "Design & prototyping" },
   { id: "claude", name: "Claude", role: "AI assistant" },
-  { id: "chatgpt", name: "ChatGPT", role: "AI assistant" },
   { id: "gemini", name: "Gemini", role: "AI assistant" },
+  { id: "chatgpt", name: "ChatGPT", role: "AI assistant" },
   { id: "nanobanana", name: "Nano Banana", role: "AI image generation" },
+  { id: "kling", name: "Kling AI", role: "AI video generation" },
   { id: "adobecc", name: "Adobe CC", role: "Visuals & motion" },
-  { id: "maze", name: "Maze", role: "Usability testing" },
   { id: "webflow", name: "Webflow", role: "Website building" },
 ];
 const ENTER = TOOLS.length; // index of the Enter key
 const COUNT = TOOLS.length + 1;
 
-export default function ToolkitKeyboard({ manrope }: { manrope: React.CSSProperties }) {
+// `greet`: each time it turns true (the keyboard has grown to full size), the keys type a quick hello.
+export default function ToolkitKeyboard({ manrope, greet = true }: { manrope: React.CSSProperties; greet?: boolean }) {
   const keyRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const padRef = useRef<HTMLDivElement>(null);
   const [focusIdx, setFocusIdx] = useState(0);
@@ -51,7 +53,12 @@ export default function ToolkitKeyboard({ manrope }: { manrope: React.CSSPropert
     v: new Float32Array(COUNT),
     held: -1, // key held by pointer / keyboard
     hover: -1,
-    taps: new Float32Array(COUNT), // time until which a tapped key stays down
+    taps: new Float64Array(COUNT), // time until which a tapped key stays down
+    // A typing wave across the board: keys in `order` go down one after another, `gap` ms apart,
+    // each for `hold` ms, starting at `start`. Driven by the animation loop rather than timers, so it
+    // plays out intact even if the browser throttles timers (e.g. right after switching tabs).
+    wave: { start: 0, order: [] as number[], gap: 0, hold: 0, named: false },
+    waveKey: -1, // key the engraving is currently naming for a `named` wave
     raf: 0, last: 0, reduced: false,
     kick: () => {},
   });
@@ -60,8 +67,15 @@ export default function ToolkitKeyboard({ manrope }: { manrope: React.CSSPropert
     const s = st.current;
     s.reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    const inWave = (i: number, now: number) => {
+      const n = s.wave.order.indexOf(i);
+      if (n < 0) return false;
+      const t0 = s.wave.start + n * s.wave.gap;
+      return now >= t0 && now < t0 + s.wave.hold;
+    };
+    const waveRunning = (now: number) => now < s.wave.start + s.wave.order.length * s.wave.gap + s.wave.hold;
     const target = (i: number, now: number) => {
-      if (s.held === i || s.taps[i] > now) return 1;
+      if (s.held === i || s.taps[i] > now || inWave(i, now)) return 1;
       // Hover: only the key under the pointer sinks, part of the way.
       return s.hover === i ? 0.45 : 0;
     };
@@ -81,37 +95,45 @@ export default function ToolkitKeyboard({ manrope }: { manrope: React.CSSPropert
         if (Math.abs(t - s.d[i]) > 0.002 || Math.abs(s.v[i]) > 0.002 || s.taps[i] > now) moving = true;
         keyRefs.current[i]?.style.setProperty("--d", Math.max(-0.08, Math.min(1, s.d[i])).toFixed(3));
       }
+      // A named wave shows each key's tool on the engraving as it goes down, then hands back to hover.
+      if (s.wave.named) {
+        let cur = -1;
+        s.wave.order.forEach((key, n) => { if (now >= s.wave.start + n * s.wave.gap) cur = key; });
+        if (!waveRunning(now)) cur = s.hover;
+        if (cur !== s.waveKey) { s.waveKey = cur; setLabelIdx(cur); }
+      }
       // The status light glows while a key is down.
       padRef.current?.style.setProperty("--glow", Math.max(0, Math.min(1, Math.max(...s.d) * 1.4)).toFixed(3));
-      if (moving || s.hover >= 0 || s.held >= 0) s.raf = requestAnimationFrame(loop);
+      if (moving || waveRunning(now) || s.hover >= 0 || s.held >= 0) s.raf = requestAnimationFrame(loop);
       else { s.raf = 0; s.last = 0; }
     };
     s.kick = () => { if (!s.raf) s.raf = requestAnimationFrame(loop); };
 
-    // First time the pad is well in view, the keys type out a quick hello.
-    const io = new IntersectionObserver(([e]) => {
-      if (!e.isIntersecting || s.reduced) return;
-      io.disconnect();
-      // Same order as typing: along the top row, back along the bottom row, then Enter.
-      [0, 1, 2, 3, 7, 6, 5, 4, ENTER].forEach((k, n) => {
-        window.setTimeout(() => { s.taps[k] = performance.now() + 120; s.kick(); }, 200 + n * 70);
-      });
-    }, { threshold: 0.5 });
-    if (padRef.current) io.observe(padRef.current);
 
-    return () => { io.disconnect(); cancelAnimationFrame(s.raf); s.raf = 0; };
+    return () => { cancelAnimationFrame(s.raf); s.raf = 0; };
   }, []);
+
+  // Each time the keyboard reaches full size, every key is pressed in turn, in reading order (top row,
+  // bottom row, then Enter), with the engraving naming each tool as it goes down.
+  useEffect(() => {
+    if (!greet || st.current.reduced) return;
+    wave([0, 1, 2, 3, 4, 5, 6, 7, ENTER], 250, 130, 200, true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [greet]);
+
+  const wave = (order: number[], delay: number, gap: number, hold: number, named = false) => {
+    const s = st.current;
+    s.wave = { start: performance.now() + delay, order, gap, hold, named };
+    s.waveKey = -2;
+    s.kick();
+  };
 
   const tap = (i: number) => {
     const s = st.current;
     s.taps[i] = performance.now() + 140;
     setLabelIdx(i);
-    if (i === ENTER) {
-      // Enter: a typing wave across the board.
-      [0, 1, 2, 3, 7, 6, 5, 4].forEach((k, n) => {
-        window.setTimeout(() => { s.taps[k] = performance.now() + 110; s.kick(); }, 90 + n * 60);
-      });
-    }
+    // Enter: a typing wave across the board.
+    if (i === ENTER) wave([0, 1, 2, 3, 7, 6, 5, 4], 90, 60, 150);
     s.kick();
   };
 

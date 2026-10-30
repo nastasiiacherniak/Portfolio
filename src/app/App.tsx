@@ -1,6 +1,6 @@
 import { useState, useEffect, useLayoutEffect, useRef, forwardRef } from "react";
 import { useNavigate } from "react-router";
-import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useMotionTemplate, useSpring, type MotionValue } from "motion/react";
+import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useMotionTemplate, useSpring, useReducedMotion, useMotionValueEvent, type MotionValue } from "motion/react";
 import Float from "./components/fancy/float";
 import { TextAnimate } from "./components/magicui/text-animate";
 import ToolkitKeyboard from "./ToolkitKeyboard";
@@ -735,6 +735,32 @@ function Recommendation() {
 }
 
 export function Contact() {
+  const reduceMotion = useReducedMotion();
+  // The keyboard grows with the scroll: as its top enters the viewport it is small, and it reaches
+  // full size when its top is 60% down the screen (reachable even on tall screens, where the page
+  // runs out before the keyboard can climb higher). Scrolling down it starts from 15%; scrolling back
+  // up it shrinks further, to 10% (the switch between the two is sprung, so it never jumps).
+  // A light spring smooths out wheel steps.
+  const keyboardRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: keyboardIn } = useScroll({ target: keyboardRef, offset: ["start end", "start 0.6"] });
+  const keyboardEase = useSpring(keyboardIn, { stiffness: 140, damping: 30, mass: 0.4 });
+  const keyboardMin = useMotionValue(0.15);
+  const keyboardMinEase = useSpring(keyboardMin, { stiffness: 120, damping: 30 });
+  useMotionValueEvent(keyboardIn, "change", (v) => {
+    const prev = keyboardIn.getPrevious() ?? v;
+    if (v < prev) keyboardMin.set(0.1);
+    else if (v > prev) keyboardMin.set(0.15);
+  });
+  const keyboardScale = useTransform([keyboardEase, keyboardMinEase], ([p, min]: number[]) => min + (1 - min) * p);
+  const keyboardOpacity = useTransform(keyboardEase, [0, 0.5], [0, 1]);
+  // True while the keyboard is at full size; each time it gets there again, the keys type a hello.
+  const [keyboardFull, setKeyboardFull] = useState(false);
+  useMotionValueEvent(keyboardEase, "change", (v) => {
+    // At the very bottom of the page it counts as full even if it can't quite get there.
+    const atBottom = window.scrollY >= document.documentElement.scrollHeight - window.innerHeight - 2;
+    if (v > 0.97 || (atBottom && v > 0.8)) setKeyboardFull(true);
+    else if (v < 0.5) setKeyboardFull(false);
+  });
   return (
     <section id="contact" className="w-full overflow-x-clip" style={manrope}>
       <div className="max-w-[1440px] mx-auto px-4 md:px-[40px] lg:px-[84px] pt-[80px] pb-[24px] md:py-[24px]">
@@ -747,11 +773,16 @@ export function Contact() {
             />
             {/* Square stage for the interactive toolkit keyboard: pulled up on every screen, and
                 from md also nudged right, into the page margin. */}
-            <Reveal delay={0.1} className="shrink-0 -mt-[32px] md:-mt-[48px] lg:-mt-[64px] md:-mr-[24px] lg:-mr-[48px]">
+            {/* The keyboard grows in with the scroll (held at full size under reduced motion). */}
+            <motion.div
+              ref={keyboardRef}
+              className="shrink-0 -mt-[32px] md:-mt-[48px] lg:-mt-[64px] md:-mr-[24px] lg:-mr-[48px]"
+              style={reduceMotion ? undefined : { scale: keyboardScale, opacity: keyboardOpacity }}
+            >
               <div className="w-[240px] md:w-[280px] lg:w-[360px] aspect-square shrink-0">
-                <ToolkitKeyboard manrope={manrope} />
+                <ToolkitKeyboard manrope={manrope} greet={keyboardFull} />
               </div>
-            </Reveal>
+            </motion.div>
           </div>
           <div className="flex flex-col md:flex-row md:justify-between items-start gap-[32px]">
             <div className="flex flex-col gap-[12px] md:w-[408px]">
