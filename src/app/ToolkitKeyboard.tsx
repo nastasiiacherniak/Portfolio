@@ -83,7 +83,12 @@ export default function ToolkitKeyboard({ manrope, greet = true, finish = "solid
     };
 
     const loop = (now: number) => {
-      const dt = Math.min(2.5, (now - (s.last || now)) / 16.67 || 1);
+      // Elapsed time in 60fps frames, integrated in steps of at most one frame: a single big step makes
+      // the spring unstable when frames are slow (Safari and iPads render this 3D scene more heavily),
+      // and the keys would then flip between up and down instead of settling.
+      const elapsed = Math.min(6, (now - (s.last || now)) / 16.67 || 1);
+      const steps = Math.max(1, Math.ceil(elapsed));
+      const dt = elapsed / steps;
       s.last = now;
       let moving = false;
       for (let i = 0; i < COUNT; i++) {
@@ -91,8 +96,10 @@ export default function ToolkitKeyboard({ manrope, greet = true, finish = "solid
         if (s.reduced) { s.d[i] = t; s.v[i] = 0; }
         else {
           // Stiff, slightly underdamped spring: keys snap down and bounce back up a touch.
-          s.v[i] += ((t - s.d[i]) * 0.32 - s.v[i] * 0.42) * dt;
-          s.d[i] += s.v[i] * dt;
+          for (let n = 0; n < steps; n++) {
+            s.v[i] += ((t - s.d[i]) * 0.32 - s.v[i] * 0.42) * dt;
+            s.d[i] += s.v[i] * dt;
+          }
         }
         if (Math.abs(t - s.d[i]) > 0.002 || Math.abs(s.v[i]) > 0.002 || s.taps[i] > now) moving = true;
         keyRefs.current[i]?.style.setProperty("--d", Math.max(-0.08, Math.min(1, s.d[i])).toFixed(3));

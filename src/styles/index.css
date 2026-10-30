@@ -99,6 +99,12 @@ html {
   background: linear-gradient(118deg, #4a4b51, #2f3035 55%, #44454b);
   filter: brightness(calc(1 - var(--z) * 0.022));
 }
+/* Lift the pad's content (key plate, engraving row) a hair above its top face. Coplanar faces in a
+   3D context are a depth tie that WebKit (Safari; every iOS browser) resolves by splitting along a
+   line, which cut the keys off diagonally. */
+.toolkit-pad > :not(.toolkit-layer) {
+  transform: translateZ(1px);
+}
 .toolkit-led {
   width: 1.1cqw;
   height: 1.1cqw;
