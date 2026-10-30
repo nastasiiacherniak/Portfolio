@@ -42,7 +42,9 @@ const ENTER = TOOLS.length; // index of the Enter key
 const COUNT = TOOLS.length + 1;
 
 // `greet`: each time it turns true (the keyboard has grown to full size), the keys type a quick hello.
-export default function ToolkitKeyboard({ manrope, greet = true }: { manrope: React.CSSProperties; greet?: boolean }) {
+// `finish`: "solid" — graphite aluminium base with cream keys (default); "gold" — a single-colour
+// line-art version in brand gold (dark surfaces, gold outlines and logos, a solid gold Enter).
+export default function ToolkitKeyboard({ manrope, greet = true, finish = "solid" }: { manrope: React.CSSProperties; greet?: boolean; finish?: "solid" | "gold" }) {
   const keyRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const padRef = useRef<HTMLDivElement>(null);
   const [focusIdx, setFocusIdx] = useState(0);
@@ -179,7 +181,7 @@ export default function ToolkitKeyboard({ manrope, greet = true }: { manrope: Re
           }}
           onPointerLeave={() => { hover(-1); setLabelIdx(-1); }}
           onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setLabelIdx(-1); }}
-          className="toolkit-pad pointer-events-auto relative mx-auto w-[78cqw] rounded-[1.6cqw] px-[3cqw] pt-[3cqw] pb-[2.2cqw]"
+          className={`toolkit-pad ${finish === "gold" ? "toolkit-pad--gold" : ""} pointer-events-auto relative mx-auto w-[78cqw] rounded-[1.6cqw] px-[3cqw] pt-[3cqw] pb-[2.2cqw]`}
         >
           {/* Case thickness: a stack of layers below the top face. */}
           {Array.from({ length: 16 }, (_, k) => (
@@ -230,7 +232,7 @@ export default function ToolkitKeyboard({ manrope, greet = true }: { manrope: Re
             </button>
           </div>
           {/* Engraving and status light along the bottom edge of the base; the engraving names the key in use. */}
-          <div aria-hidden="true" className="flex items-center justify-between px-[1.2cqw] pt-[1.8cqw] text-[2cqw] leading-none tracking-[0.28em] text-[#8e8d96]">
+          <div aria-hidden="true" className="flex items-center justify-between px-[1.2cqw] pt-[1.8cqw] text-[2cqw] leading-none tracking-[0.28em] text-[#8e8d96] toolkit-engraving">
             <span className={`uppercase transition-colors duration-300 ${labelIdx < 0 ? "" : "text-[#c39e7b]"}`}>{labelIdx < 0 ? "Current toolkit" : labelIdx === ENTER ? "Enter" : TOOLS[labelIdx].name}</span>
             <span className="toolkit-led" />
           </div>

@@ -203,3 +203,67 @@ html {
   outline: 0.45cqw solid #c39e7b;
   outline-offset: 0.5cqw;
 }
+
+/* ---- Alternative finish: grey and gold ----
+   Every surface (base, pocket, key tops) is the page's own grey, edged with a fine gold line; the
+   "shadow" sides — the thickness of the base and the raised side of every key — are solid gold.
+   Logos and lettering are gold. A pressed key's top warms with gold. */
+.toolkit-pad--gold {
+  --gold: #c39e7b;
+  --gold-side: #a9845f;
+  --gold-soft: rgba(195, 158, 123, 0.4);
+  --grey: #33323b;
+  background: var(--grey);
+  box-shadow: inset 0 0 0 1px var(--gold);
+}
+.toolkit-pad--gold .toolkit-layer {
+  background: var(--gold-side);
+  filter: brightness(calc(1 - var(--z) * 0.02));
+}
+.toolkit-pad--gold .toolkit-plate {
+  background: var(--grey);
+  box-shadow:
+    inset 0 0 0 1px var(--gold-soft),
+    inset 0 0.8cqw 1.4cqw rgba(0, 0, 0, 0.35);
+}
+.toolkit-pad--gold .toolkit-key {
+  --top: var(--grey);
+  --side: var(--gold-side);
+  background: rgba(0, 0, 0, 0.25); /* the socket */
+}
+.toolkit-pad--gold .toolkit-cap,
+.toolkit-pad--gold .toolkit-key--enter .toolkit-cap {
+  background: color-mix(in srgb, var(--gold) calc(var(--d) * 30%), var(--grey));
+  color: var(--gold);
+  box-shadow:
+    inset 0 0 0 1px var(--gold),
+    0 calc((1 - var(--d)) * var(--lift)) 0 var(--side),
+    0 calc((1 - var(--d)) * var(--lift) + 0.5cqw) calc(1.6cqw - var(--d) * 0.8cqw) rgba(0, 0, 0, 0.35);
+}
+.toolkit-pad--gold .toolkit-cap::before,
+.toolkit-pad--gold .toolkit-key--enter .toolkit-cap::before {
+  background: none;
+  box-shadow: inset 0 0 0 1px var(--gold-soft);
+}
+/* Every logo in solid gold. */
+.toolkit-pad--gold .toolkit-cap svg :is(path, circle, ellipse, rect, polygon) {
+  fill: var(--gold);
+}
+.toolkit-pad--gold .toolkit-cap svg [stroke] {
+  stroke: var(--gold);
+}
+/* The Enter arrow is drawn as a stroke only. */
+.toolkit-pad--gold .toolkit-key--enter .toolkit-cap svg :is(path, circle, ellipse, rect, polygon) {
+  fill: none;
+}
+.toolkit-pad--gold .toolkit-led {
+  background: transparent;
+  opacity: 1;
+  box-shadow:
+    inset 0 0 0 1px var(--gold),
+    inset 0 0 0 1cqw rgba(195, 158, 123, var(--glow)),
+    0 0 calc(var(--glow) * 2.4cqw) rgba(195, 158, 123, calc(var(--glow) * 0.6));
+}
+.toolkit-pad--gold .toolkit-engraving {
+  color: var(--gold);
+}
