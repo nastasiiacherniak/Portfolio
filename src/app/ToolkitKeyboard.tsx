@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Float from "./components/fancy/float";
+import { keyDown, keyUp } from "./keySound";
 
 /* Interactive "toolkit" keyboard for the Contact section: a small macro pad with my tools on its
  * keys and a wide Enter key.
@@ -142,8 +143,20 @@ export default function ToolkitKeyboard({ manrope, greet = true, finish = "solid
     s.taps[i] = performance.now() + 140;
     setLabelIdx(i);
     // Enter: a typing wave across the board.
-    if (i === ENTER) wave([0, 1, 2, 3, 7, 6, 5, 4], 90, 60, 150);
+    if (i === ENTER) {
+      const order = [0, 1, 2, 3, 7, 6, 5, 4];
+      wave(order, 90, 60, 150);
+      // Each key in the wave clicks as it goes down and comes back up.
+      order.forEach((k, n) => { keyDown(k, false, 90 + n * 60); keyUp(k, false, 90 + n * 60 + 150); });
+    }
     s.kick();
+  };
+
+  // A press from the keyboard (Enter/Space/1–8): click down, click up, then act like a tap.
+  const press = (i: number) => {
+    keyDown(i, i === ENTER);
+    keyUp(i, i === ENTER, 90);
+    tap(i);
   };
 
   const hover = (i: number) => {
@@ -164,7 +177,7 @@ export default function ToolkitKeyboard({ manrope, greet = true, finish = "solid
     else if (e.key === "ArrowLeft") next = cur === ENTER ? ENTER : Math.max(cur - 1, cur < 4 ? 0 : 4);
     else if (e.key === "ArrowDown") next = cur < 4 ? cur + 4 : ENTER;
     else if (e.key === "ArrowUp") next = cur === ENTER ? 4 + col(cur) : cur >= 4 ? cur - 4 : cur;
-    else if (/^[1-8]$/.test(e.key)) { const i = Number(e.key) - 1; e.preventDefault(); setFocusIdx(i); keyRefs.current[i]?.focus(); tap(i); return; }
+    else if (/^[1-8]$/.test(e.key)) { const i = Number(e.key) - 1; e.preventDefault(); setFocusIdx(i); keyRefs.current[i]?.focus(); press(i); return; }
     if (next >= 0) {
       e.preventDefault();
       setFocusIdx(next);
@@ -203,10 +216,10 @@ export default function ToolkitKeyboard({ manrope, greet = true, finish = "solid
                 tabIndex={focusIdx === i ? 0 : -1}
                 aria-label={`${t.name} — ${t.role}`}
                 data-cursor="expand"
-                onPointerDown={(e) => { if (e.pointerType !== "mouse") hover(-1); st.current.held = i; st.current.kick(); }}
-                onPointerUp={() => { st.current.held = -1; tap(i); }}
+                onPointerDown={(e) => { if (e.pointerType !== "mouse") hover(-1); keyDown(i); st.current.held = i; st.current.kick(); }}
+                onPointerUp={() => { st.current.held = -1; keyUp(i); tap(i); }}
                 onPointerCancel={() => { st.current.held = -1; st.current.kick(); }}
-                onKeyDown={(e) => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); tap(i); } }}
+                onKeyDown={(e) => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); press(i); } }}
                 onFocus={() => { setFocusIdx(i); setLabelIdx(i); }}
                 className="toolkit-key aspect-square"
               >
@@ -221,10 +234,10 @@ export default function ToolkitKeyboard({ manrope, greet = true, finish = "solid
               tabIndex={focusIdx === ENTER ? 0 : -1}
               aria-label="Enter"
               data-cursor="expand"
-              onPointerDown={(e) => { if (e.pointerType !== "mouse") hover(-1); st.current.held = ENTER; st.current.kick(); }}
-              onPointerUp={() => { st.current.held = -1; tap(ENTER); }}
+              onPointerDown={(e) => { if (e.pointerType !== "mouse") hover(-1); keyDown(ENTER, true); st.current.held = ENTER; st.current.kick(); }}
+              onPointerUp={() => { st.current.held = -1; keyUp(ENTER, true); tap(ENTER); }}
               onPointerCancel={() => { st.current.held = -1; st.current.kick(); }}
-              onKeyDown={(e) => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); tap(ENTER); } }}
+              onKeyDown={(e) => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); press(ENTER); } }}
               onFocus={() => { setFocusIdx(ENTER); setLabelIdx(ENTER); }}
               className="toolkit-key toolkit-key--enter col-span-4 h-[13cqw]"
             >
