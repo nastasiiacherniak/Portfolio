@@ -79,6 +79,8 @@
 }
 
 @theme inline {
+  /* extra breakpoint between xl (1280) and 2xl (1536): laptop-wide desktops, used by the Playground */
+  --breakpoint-hd: 90rem;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);

@@ -1,0 +1,191 @@
+/* Playground: its own typefaces (loaded only on this page), the backdrop and the instant photos. */
+@import "@fontsource-variable/fraunces";
+@import "@fontsource-variable/dm-sans";
+@import "@fontsource/caveat/600.css";
+
+.pg-root {
+  --pg-ink: #1f2a17;
+  --pg-ink-soft: #46523c;
+  --pg-paper: #fbfaf6;
+  --pg-lime: #e3f04a;
+  --pg-focus: #1f2a17;
+  font-family: "DM Sans Variable", system-ui, sans-serif;
+  color: var(--pg-ink);
+  background: #e9efe6;
+}
+.pg-display {
+  font-family: "Fraunces Variable", Georgia, serif;
+  font-variation-settings: "SOFT" 100, "WONK" 0;
+  letter-spacing: -0.02em;
+}
+.pg-hand {
+  font-family: "Caveat", "Comic Sans MS", cursive;
+  font-weight: 600;
+}
+.pg-root :focus-visible {
+  outline: 2px solid var(--pg-focus);
+  outline-offset: 3px;
+}
+
+/* Backdrop: the meadow photo, still. */
+.pg-bg {
+  background-size: cover;
+  background-position: center 52%;
+  pointer-events: none;
+}
+
+/* Camera stage: as large as the viewport height allows; the canvas's empty top/bottom margins
+   tuck under the headline and controls (it is transparent; only the camera itself takes clicks). */
+.pg-stage {
+  /* phones: narrower, so the colour column on the right never covers the camera */
+  --stage-w: clamp(235px, min(78vw, calc((100svh - 430px) * 1.48)), 580px);
+  width: var(--stage-w);
+  margin-top: calc(var(--stage-w) * -0.04);
+  margin-bottom: calc(var(--stage-w) * -0.08);
+}
+@media (min-width: 768px) {
+  .pg-stage { --stage-w: clamp(240px, min(88vw, calc((100svh - 430px) * 1.48)), 580px); }
+}
+
+/* Colour swatch name: to the left of the swatch, on keyboard focus or briefly after a tap.
+   (With a mouse, the cursor's name tag shows it instead.) */
+.pg-tip {
+  position: absolute;
+  right: calc(100% + 16px);
+  top: 50%;
+  transform: translate(4px, -50%);
+  white-space: nowrap;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--pg-ink);
+  color: var(--pg-paper);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s, transform 0.18s;
+}
+.peer:focus-visible + .pg-tip,
+.pg-tip.is-shown {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+/* ---- tactile buttons with gradient border (matching reference UI, no drop shadows) ---- */
+.pg-btn-light {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(180deg, #f6f6f6 0%, #ebebeb 100%) padding-box,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(0, 0, 0, 0.24) 100%) border-box;
+  color: #141414;
+  box-shadow: none;
+  transition: background 0.2s, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.pg-btn-light:hover {
+  background:
+    linear-gradient(180deg, #ffffff 0%, #ededed 100%) padding-box,
+    linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0.32) 100%) border-box;
+}
+.pg-btn-light:active {
+  background:
+    linear-gradient(180deg, #ebebeb 0%, #e2e2e2 100%) padding-box,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(0, 0, 0, 0.36) 100%) border-box;
+  transform: translateY(0.5px);
+}
+.pg-btn-light[aria-selected="true"] {
+  background:
+    linear-gradient(180deg, #141414 0%, #141414 100%) padding-box,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(0, 0, 0, 0.6) 100%) border-box;
+  color: #f7f7f5;
+}
+.pg-btn-light[aria-selected="true"]:hover {
+  background:
+    linear-gradient(180deg, #1f1f1f 0%, #1f1f1f 100%) padding-box,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.45) 0%, rgba(0, 0, 0, 0.7) 100%) border-box;
+}
+
+/* ---- camera colour pickers with gradient border ---- */
+.pg-picker-panel {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(rgba(143, 148, 144, 0.35), rgba(143, 148, 144, 0.35)) padding-box,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(0, 0, 0, 0.22) 100%) border-box;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+}
+
+.pg-picker-swatch {
+  border: 1.5px solid transparent;
+  background:
+    linear-gradient(var(--swatch-bg), var(--swatch-bg)) padding-box,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(0, 0, 0, 0.28) 100%) border-box;
+  box-shadow: none;
+}
+.pg-picker-swatch.is-active {
+  outline: 1.5px solid #141414;
+  outline-offset: 2px;
+}
+
+/* ---- Snap + Refresh pill dock (matching attached reference) ---- */
+.pg-snap-dock {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(180deg, rgba(244, 244, 242, 0.85) 0%, rgba(232, 232, 230, 0.85) 100%) padding-box,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(0, 0, 0, 0.16) 100%) border-box;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.pg-btn-dark {
+  background: linear-gradient(180deg, #1b1b1c 0%, #0d0d0e 100%);
+  color: #f7f7f5;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 10px 24px rgba(0, 0, 0, 0.28),
+    0 2px 6px rgba(0, 0, 0, 0.16);
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s, opacity 0.2s, background 0.2s;
+}
+.pg-btn-dark:hover:not(:disabled) {
+  background: linear-gradient(180deg, #242426 0%, #111112 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 10px 24px rgba(0, 0, 0, 0.28),
+    0 2px 6px rgba(0, 0, 0, 0.16);
+}
+.pg-btn-dark:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.25);
+}
+.pg-btn-dark:disabled {
+  opacity: 0.65;
+}
+
+/* ---- instant photos ---- */
+.pg-photo {
+  background: var(--pg-paper);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04), 0 10px 24px rgba(20, 40, 10, 0.24);
+  border-radius: 4px;
+}
+.pg-photo-image {
+  transition: filter 3.4s ease-out;
+}
+.pg-photo-image[data-developing="true"] {
+  filter: brightness(0.25) saturate(0) sepia(0.6) blur(2px);
+  transition: none;
+}
+
+/* Opened photo backdrop: lightweight tinted scrim (avoids expensive per-frame backdrop-filter
+   re-sampling over the WebGL canvas while the dialog, tabs, or cursor animate). */
+.pg-backdrop {
+  background: rgba(24, 32, 18, 0.48);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pg-photo-image { transition: filter 0.6s ease-out; }
+  .pg-tip { transition: none; }
+}

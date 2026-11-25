@@ -12,6 +12,8 @@
   const CaseStudyRinesk = lazy(() => import("./app/CaseStudyRinesk.tsx"));
   const CaseStudyFincube = lazy(() => import("./app/CaseStudyFincube.tsx"));
   const CaseStudyJukrassic = lazy(() => import("./app/CaseStudyJukrassic.tsx"));
+  // The Playground carries Three.js and its own fonts, so it loads only when visited.
+  const Playground = lazy(() => import("./playground/Playground.tsx"));
 
   createRoot(document.getElementById("root")!).render(
     <BrowserRouter>
@@ -23,6 +25,7 @@
           <Route path="/work/rinesk" element={<CaseStudyRinesk />} />
           <Route path="/work/fincube" element={<CaseStudyFincube />} />
           <Route path="/work/jukrassic" element={<CaseStudyJukrassic />} />
+          <Route path="/playground" element={<Playground />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

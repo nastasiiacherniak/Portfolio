@@ -1,5 +1,5 @@
 import { useState, useEffect, useLayoutEffect, useRef, forwardRef } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useMotionTemplate, useSpring, useReducedMotion, useMotionValueEvent, type MotionValue } from "motion/react";
 import Float from "./components/fancy/float";
 import { TextAnimate } from "./components/magicui/text-animate";
@@ -121,6 +121,17 @@ export function useMediaQuery(query: string) {
   return matches;
 }
 
+// Small instant-camera glyph for the Playground entry.
+function PlaygroundGlyph({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" aria-hidden="true">
+      <rect x="2.5" y="3.5" width="15" height="13" rx="3" />
+      <circle cx="11" cy="11" r="3.2" />
+      <path d="M5 6.5h2.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 function Nav({ textColor }: { textColor: MotionValue<string> }) {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("");
@@ -169,6 +180,19 @@ function Nav({ textColor }: { textColor: MotionValue<string> }) {
       </div>
       <motion.div className="relative z-50 max-w-[1440px] mx-auto flex items-center justify-between px-4 md:px-[40px] lg:px-[84px] py-3 md:py-[24px] uppercase text-[14px] md:text-[16px]" style={{ ...manrope, color: textColor }}>
         <span className={`transition-opacity duration-200 ${open ? "opacity-0" : "opacity-100"}`}>UI/UX & AI-Augmented Design</span>
+        {/* Playground entry: centred on the page from 1280px; below that it sits centred in the free space
+            between the label and the links, and narrows to an icon where the space is tight. On phones it lives in the menu. */}
+        <div className={`hidden md:flex flex-1 justify-center px-[8px] xl:px-0 xl:absolute xl:inset-x-0 xl:top-1/2 xl:-translate-y-1/2 xl:pointer-events-none transition-opacity duration-200 ${open ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
+          <Link
+            to="/playground"
+            data-cursor="expand"
+            aria-label="Playground"
+            className="pointer-events-auto inline-flex items-center justify-center gap-[8px] h-[28px] w-[28px] lg:w-auto lg:h-[36px] lg:px-[16px] rounded-full border border-current transition-colors duration-300 hover:bg-[#c39e7b] hover:border-[#c39e7b] hover:text-[#33323b]"
+          >
+            <PlaygroundGlyph />
+            <span className="hidden lg:inline font-normal leading-none">Playground</span>
+          </Link>
+        </div>
         <div className="hidden md:flex gap-[24px]">
           {["about", "work", "recommendation", "contact"].map(id => (
             <button
@@ -206,6 +230,13 @@ function Nav({ textColor }: { textColor: MotionValue<string> }) {
               {["about", "work", "recommendation", "contact"].map(id => (
                 <button key={id} onClick={() => go(id)} className="font-normal capitalize text-[#fefefe] text-[28px] leading-none">{id}</button>
               ))}
+              <Link
+                to="/playground"
+                onClick={() => setOpen(false)}
+                className="mt-[8px] inline-flex items-center gap-[10px] h-[48px] px-[22px] rounded-full border border-[#fefefe]/60 text-[#fefefe] text-[18px] font-normal normal-case"
+              >
+                <PlaygroundGlyph size={18} /> Playground
+              </Link>
             </div>
             <a
               href="https://linktr.ee/stasiacher"

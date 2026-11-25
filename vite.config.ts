@@ -45,6 +45,10 @@ export default defineConfig({
           if (!id.includes('node_modules')) return
           if (/[\\/]node_modules[\\/]motion/.test(id) || id.includes('framer-motion')) return 'motion'
           if (/[\\/]node_modules[\\/](react|react-dom|react-router|scheduler)[\\/]/.test(id)) return 'react'
+          // Three.js is used only by the Playground: its own chunk keeps it off the homepage.
+          if (/[\\/]node_modules[\\/]three[\\/]/.test(id)) return 'three'
+          // The Playground's fonts stay with that page's CSS.
+          if (id.includes('@fontsource')) return
           return 'vendor'
         },
       },
